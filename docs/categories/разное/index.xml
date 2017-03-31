@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Разное on ИТ заметки</title>
+    <link>http://sclif.pro/categories/%D1%80%D0%B0%D0%B7%D0%BD%D0%BE%D0%B5/index.xml</link>
+    <description>Recent content in Разное on ИТ заметки</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-ru</language>
+    <atom:link href="http://sclif.pro/categories/%D1%80%D0%B0%D0%B7%D0%BD%D0%BE%D0%B5/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Wireshark в docker</title>
+      <link>http://sclif.pro/post/2015-03-12-wireshark-%D0%B2-docker/</link>
+      <pubDate>Thu, 12 Mar 2015 18:12:31 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2015-03-12-wireshark-%D0%B2-docker/</guid>
+      <description>&lt;p&gt;Не давно столкнулся с проблемой установки wireshark 1.12 из исходников на ubuntu desktop 14.04, а точнее был конфликт между библиотеками Xserver. Так как я по большой части использую wireshark для наглядного разбора, а статистику собираю через tcpdump, то решил создать wireshark в docker.&lt;/p&gt;
+
+&lt;p&gt;Dockerfile &lt;a href=&#34;https://github.com/sclif13/docker-wireshark&#34;&gt;https://github.com/sclif13/docker-wireshark&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Статья в помощь по запуску &lt;a href=&#34;http://habrahabr.ru/post/240509/&#34;&gt;http://habrahabr.ru/post/240509/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Wifi Hotspot на основе Netup UTM5 &#43; Mikrotik</title>
+      <link>http://sclif.pro/post/2013-10-06-wifi-hotspot-%D0%BD%D0%B0-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B5-netup-utm5-mikrotik/</link>
+      <pubDate>Sun, 06 Oct 2013 17:13:22 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2013-10-06-wifi-hotspot-%D0%BD%D0%B0-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B5-netup-utm5-mikrotik/</guid>
+      <description>&lt;p&gt;Хочу поделиться своим опытов внедрения платного Wifi hotspot на основе биллинга Netup UTM5 и Mikrotik Hotspot. Не собираюсь открывать Америку, опишу сам концепт, а остальное додумаете или найдете на &lt;a title=&#34;Форум Netup&#34; href=&#34;http://www.netup.ru/phpbb/index.php&#34; target=&#34;_blank&#34;&gt;форуме&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Берем отдельный биллинг и создаем в нем тариф или несколько тарифов с услугой Dialup. Я создал тариф 50 рублей за час с равномерным списанием в течении суток, т. е. расчетный период 1 день. Настроил mikrotik c hotspot и связал его с биллингом через Radius.&lt;/p&gt;
+
+&lt;p&gt;Далее пользователь заходит на страницу hotspot, где ему предложено ввести логин и пароль, если их нет, то пройти на сайт регистрации. На сайте регистрации пользователь в поле логин вводит свой номер телефона , а так же заполняет поля пароля и email. После того как пользователь нажимает кнопку регистрации в биллинге создается аккаунт через urfa клиент.&lt;/p&gt;
+
+&lt;p&gt;Затем пользователь оплачивает доступ через платежные системы, использую как идентификатор свой номер телефона. Заходит в личный кабинет и активирует тариф опять же с помощью скрипта и urfa клиента. Все теперь пользователь может авторизоваться и пользоваться пока у него не закончатся деньги.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

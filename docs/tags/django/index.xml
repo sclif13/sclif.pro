@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Django on ИТ заметки</title>
+    <link>http://sclif.pro/tags/django/index.xml</link>
+    <description>Recent content in Django on ИТ заметки</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-ru</language>
+    <atom:link href="http://sclif.pro/tags/django/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Django замена повторяющихся слэшей в url</title>
+      <link>http://sclif.pro/post/2015-04-06-python-django-%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D0%B0-%D0%BF%D0%BE%D0%B2%D1%82%D0%BE%D1%80%D1%8F%D1%8E%D1%89%D0%B8%D1%85%D1%81%D1%8F-%D1%81%D0%BB%D1%8D%D1%88%D0%B5%D0%B9-%D0%B2-url/</link>
+      <pubDate>Mon, 06 Apr 2015 17:35:12 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2015-04-06-python-django-%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D0%B0-%D0%BF%D0%BE%D0%B2%D1%82%D0%BE%D1%80%D1%8F%D1%8E%D1%89%D0%B8%D1%85%D1%81%D1%8F-%D1%81%D0%BB%D1%8D%D1%88%D0%B5%D0%B9-%D0%B2-url/</guid>
+      <description>&lt;p&gt;Возникла необходимость удалять слэши в url. Пример:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http://example.com///
+http://example.com/one//two//
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Решение довольно простое. В ursl.py пишем&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;url(r&#39;\/{2,}&#39;, &#39;views.redirect_to&#39;),
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Тем самым производим поиск &lt;strong&gt;r&amp;#8217;\/{2,}&amp;#8217;&lt;/strong&gt; слэшей от 2 и более. Далее совершаем замену на один слэш.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import re
+def redirect_to(request):
+    return redirect(re.sub(r&#39;\/{2,}&#39;, &#39;/&#39;, request.path))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;P.S. Если используете nginx, то в конфиге в контексте http или server выставите &lt;code&gt;merge_slashes off;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Данная директива запрещает преобразование URI путём замены двух и более подряд идущих слэшей (“/”) на один.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

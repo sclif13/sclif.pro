@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Perl on ИТ заметки</title>
+    <link>http://sclif.pro/tags/perl/index.xml</link>
+    <description>Recent content in Perl on ИТ заметки</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-ru</language>
+    <atom:link href="http://sclif.pro/tags/perl/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Вывод времени на английском на perl.</title>
+      <link>http://sclif.pro/post/2013-06-24-%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4-%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%B8-%D0%BD%D0%B0-%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%BC-%D0%BD%D0%B0-perl/</link>
+      <pubDate>Mon, 24 Jun 2013 06:52:40 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2013-06-24-%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4-%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%B8-%D0%BD%D0%B0-%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%BC-%D0%BD%D0%B0-perl/</guid>
+      <description>&lt;p&gt;Появилась задача вывести время на английском в русской локали ru_RU.UTF-8.&lt;/p&gt;
+
+&lt;p&gt;Date: Mon, 24 Jun 2013 12:39:08 +0600&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/perl
+use POSIX;
+setlocale(LC_TIME,&amp;quot;C&amp;quot;);
+print &amp;quot;Date: &amp;quot; . strftime(&amp;quot;%a, %d %b %Y %H:%M:%S %z&amp;quot;, localtime) . &amp;quot;\n&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Решено: Net::SSH::Perl Can`t bind socket to port 1023</title>
+      <link>http://sclif.pro/post/2012-04-02-%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%BE-netsshperl-cant-bind-socket-to-port-1023/</link>
+      <pubDate>Mon, 02 Apr 2012 16:42:37 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2012-04-02-%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%BE-netsshperl-cant-bind-socket-to-port-1023/</guid>
+      <description>&lt;p&gt;Собрался написать не большой скрипт, который на удаленном сервере через ssh добавляет или удаляет правила iptables.Написал тестовый скрипт.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;use Net::SSH::Perl;
+
+my $host =&amp;quot;xx.xx.xx.xx&amp;quot;;
+my $user = &amp;quot;user&amp;quot;;
+my $pass = &amp;quot;paswd&amp;quot;;
+my $cmd = &amp;quot;uname -a&amp;quot;;
+my $ssh = Net::SSH::Perl-&amp;amp;gt;new (
+   $host,
+   protocol =&amp;amp;gt; 2,
+   port =&amp;amp;gt; 22,
+   debug =&amp;amp;gt; 1,
+   );
+$ssh-&amp;amp;gt;login($user,$pass);
+my ($stdout, $stderr, $exit) = $ssh-&amp;amp;gt;cmd($cmd);
+print &amp;quot;$stdout&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Запустил один раз и он отработал нормально и сразу же второй раз. И тут выпала ошибка &lt;strong&gt;Net::SSH Can&amp;#8217;t bind socket to port 1023 Адрес уже используется. &lt;/strong&gt;При чем на другом сервере такой проблемы не было с идентичной Ubuntu Server. Переставил несколько раз пакет Net::SSH:Perl и не помогло. Почитав в Интернете я понял в чем проблема. SSH клиент если запускать от root открывает привилегированный порт в моем случае 1023. И не закрывает socket. Соответственно, если надо открыть еще одно соединение, то нужно использовать порты больше 1024. Отключается данная опция в файлах .ssh/ssh_config и /etc/ssh/ssh_config параметром &lt;strong&gt;UsePrivilegedPort no&lt;/strong&gt;, но почему Net::SSH:Perl файл ssh_config искал в /etc. Пришлось просто еще раз скопировать и туда. И все заработало 🙂&lt;/p&gt;
+
+&lt;p&gt;А вот и скрипт управляемый iptables. Запускаем ./script iptables -A INPUT -s 0/0 -j ACCEPT. Когда происходит удаление, то скрипт удаляет все одинаковые правила, пока iptables не выдаст ошибку.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/perl
+
+use strict;
+use warnings;
+use Net::SSH::Perl;
+
+my $host = &#39;xx.xx.xx.xx&#39;;
+my $pass = &#39;xxx&#39;;
+my $user = &#39;user&#39;;
+my $x;
+my $command;
+my ($stdout, $stderr, $exit);
+
+while(@ARGV)
+                { $x = shift @ARGV;
+                  $command .= &amp;quot; $x&amp;quot;;
+                }
+
+my $ssh = Net::SSH::Perl-&amp;amp;gt;new($host, protocol =&amp;amp;gt; &#39;2&#39;);
+$ssh-&amp;amp;gt;login($user, $pass);
+
+if ($command=~m/\-D/) {
+
+        do
+                {
+                ($stdout, $stderr, $exit) = $ssh-&amp;amp;gt;cmd($command);
+                } while(!$stderr);
+
+        }
+        else
+        {
+        $ssh-&amp;amp;gt;cmd($command);
+        }
+
+$ssh-&amp;amp;gt;cmd(&amp;quot;exit&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

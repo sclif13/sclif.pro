@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Openoffice on ИТ заметки</title>
+    <link>http://sclif.pro/tags/openoffice/index.xml</link>
+    <description>Recent content in Openoffice on ИТ заметки</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-ru</language>
+    <atom:link href="http://sclif.pro/tags/openoffice/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Оо трюки</title>
+      <link>http://sclif.pro/post/2012-04-02-%D0%BE%D0%BE-%D1%82%D1%80%D1%8E%D0%BA%D0%B8/</link>
+      <pubDate>Mon, 02 Apr 2012 16:23:14 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2012-04-02-%D0%BE%D0%BE-%D1%82%D1%80%D1%8E%D0%BA%D0%B8/</guid>
+      <description>
+
+&lt;p&gt;Пришлось редактировать большую таблицу в OpenOffice и вот какие функции мне пригодились:&lt;/p&gt;
+
+&lt;h4 id=&#34;1-как-добавить-в-начало-ячейки-символ-для-всего-столбца&#34;&gt;1. Как добавить в начало ячейки символ для всего столбца?&lt;/h4&gt;
+
+&lt;p&gt;Пишем следующую формулу =&amp;ldquo;№&amp;rdquo;&amp;amp;A1, где № &amp;#8212; это наш символ, A1 &amp;#8212; соответственно наша ячейка, а дальше растягиваем эту формулу сколько надо.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://sclif.pro/images/2012/04/1.jpg&#34; style=&#34;width:300px&#34;/&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;2-как-разбить-текст-вида-1-2-3-4-5-в-одной-ячейки-по-столбцам&#34;&gt;2. Как разбить текст вида 1,2,3,4,5 в одной ячейки по столбцам?&lt;/h4&gt;
+
+&lt;p&gt;Заходим в меню Данные-&amp;gt;Текст по столбцам&amp;#8230; и там выбираем разделитель, в нашем случае запятая. Тут же видим что из этого получилось.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://sclif.pro/images/2012/04/2.jpg&#34; style=&#34;width:500px&#34;/&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;3-как-преобразовать-строку-в-столбец-или-столбец-в-строку&#34;&gt;3. Как преобразовать строку в столбец или столбец в строку?&lt;/h4&gt;
+
+&lt;p&gt;Выделяем строку или столбец, копируем Ctrl+C и жмем Ctrl+Shift+V (Вставить как). Ставим галочку Транспонировать и жмем Ok.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://sclif.pro/images/2012/04/3.jpg&#34; style=&#34;width:500px&#34;/&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

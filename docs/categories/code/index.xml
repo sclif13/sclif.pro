@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Code on ИТ заметки</title>
+    <link>http://sclif.pro/categories/code/index.xml</link>
+    <description>Recent content in Code on ИТ заметки</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-ru</language>
+    <atom:link href="http://sclif.pro/categories/code/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Django замена повторяющихся слэшей в url</title>
+      <link>http://sclif.pro/post/2015-04-06-python-django-%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D0%B0-%D0%BF%D0%BE%D0%B2%D1%82%D0%BE%D1%80%D1%8F%D1%8E%D1%89%D0%B8%D1%85%D1%81%D1%8F-%D1%81%D0%BB%D1%8D%D1%88%D0%B5%D0%B9-%D0%B2-url/</link>
+      <pubDate>Mon, 06 Apr 2015 17:35:12 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2015-04-06-python-django-%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D0%B0-%D0%BF%D0%BE%D0%B2%D1%82%D0%BE%D1%80%D1%8F%D1%8E%D1%89%D0%B8%D1%85%D1%81%D1%8F-%D1%81%D0%BB%D1%8D%D1%88%D0%B5%D0%B9-%D0%B2-url/</guid>
+      <description>&lt;p&gt;Возникла необходимость удалять слэши в url. Пример:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http://example.com///
+http://example.com/one//two//
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Решение довольно простое. В ursl.py пишем&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;url(r&#39;\/{2,}&#39;, &#39;views.redirect_to&#39;),
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Тем самым производим поиск &lt;strong&gt;r&amp;#8217;\/{2,}&amp;#8217;&lt;/strong&gt; слэшей от 2 и более. Далее совершаем замену на один слэш.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import re
+def redirect_to(request):
+    return redirect(re.sub(r&#39;\/{2,}&#39;, &#39;/&#39;, request.path))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;P.S. Если используете nginx, то в конфиге в контексте http или server выставите &lt;code&gt;merge_slashes off;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Данная директива запрещает преобразование URI путём замены двух и более подряд идущих слэшей (“/”) на один.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Решено: USSD запрос в linux c помощью huawei e1550 (Мегафон)</title>
+      <link>http://sclif.pro/post/2013-03-07-%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%BE-ussd-%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81-%D0%B2-linux-c-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-huawei-e1550-%D0%BC%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD/</link>
+      <pubDate>Thu, 07 Mar 2013 06:48:25 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2013-03-07-%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%BE-ussd-%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81-%D0%B2-linux-c-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-huawei-e1550-%D0%BC%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD/</guid>
+      <description>&lt;p&gt;Появилась необходимость контролировать баланс sim мегафона. Обычный ussd запрос *100# по каким-то причинам не захотел работать.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;#/usr/bin/ussd.pl -vi \*111\*1*2#&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/perl
+
+use Getopt::Std;
+use Device::Gsm::Pdu;
+use Text::Iconv;
+
+# defaults
+$opt_r = &amp;quot;/dev/ttyUSB2&amp;quot;;
+$opt_s = &amp;quot;/dev/ttyUSB0&amp;quot;;
+$conv = Text::Iconv-&amp;amp;gt;new(&#39;utf16be&#39;,&#39;utf8&#39;);
+my $USAGE = &amp;amp;lt;&amp;amp;lt;__EOU;
+
+Usage: $0 [-r input_port] [-s output_port] [-n] [-h] [-v] [-i] [-w] ussd_msg
+
+Description:
+  Send and receive 7-bit PDU-encoded USSD messages.
+  Written and tested for Huawei E1550 GSM/UMTS USB modem.
+
+Options:
+  -r port   Port to receive data from. Default: $opt_r
+  -s port   Port to send AT commands to. Default: $opt_s
+  -n        Do not send any data to port. Useful with -v.
+  -h        Print this help.
+  -v        Be verbose.
+  -i     Use iconv [from utf16be to utf8] to reply
+  -w reply workaround (try it if script can not decode reply)
+__EOU
+
+sub HELP_MESSAGE {print &amp;quot;$USAGE\n&amp;quot;; exit;}
+sub VERSION_MESSAGE {};
+getopts (&#39;r:s:hnviw&#39;);
+HELP_MESSAGE() and exit if (! $ARGV[0]) or defined($opt_h);
+
+print &amp;quot;USSD MSG: $ARGV[0]\n&amp;quot; if $opt_v;
+my $ussd_req = Device::Gsm::Pdu::encode_text7($ARGV[0]);
+$ussd_req =~ s/^..//;
+print &amp;quot;PDU ENCODED: $ussd_req\n&amp;quot; if $opt_v;
+
+my $ussd_reply;
+if (! $opt_n) {
+    open (SENDPORT, &#39;+&amp;amp;lt;&#39;, $opt_s) or die &amp;quot;Can&#39;t open &#39;$opt_s&#39;: $!\n&amp;quot;;
+    print SENDPORT &#39;AT+CUSD=1,&#39;,$ussd_req,&amp;quot;,15\r\n&amp;quot;;
+    close SENDPORT;
+    open (RCVPORT, $opt_r) or die &amp;quot;Can&#39;t open &#39;$opt_r&#39;: $!\n&amp;quot;;
+    print &amp;quot;Waiting for USSD reply...\n&amp;quot; if $opt_v;
+    while () {
+        chomp;
+        die &amp;quot;USSD ERROR\n&amp;quot; if $_ eq &amp;quot;+CUSD: 2&amp;quot;;
+        if (/^\+CUSD: 0,\&amp;quot;([A-F0-9]+)\&amp;quot;/) {
+            $ussd_reply = $1;
+            print &amp;quot;PDU USSD REPLY: $ussd_reply\n&amp;quot; if $opt_v;
+            last;
+        }
+        print &amp;quot;Got unknown USSD message: $_\n&amp;quot; if /^\+CUSD:/ and $opt_v;
+    }
+}
+
+if ($ussd_reply) {
+      $iconved_reply = $conv-&amp;amp;gt;convert(pack(&#39;H*&#39;, $ussd_reply));
+      $decoded_ussd_reply = Device::Gsm::Pdu::decode_text7(&#39;00&#39;.$ussd_reply);
+      print STDOUT &amp;quot;USSD REPLY: $decoded_ussd_reply\n&amp;quot; if not $opt_i;
+      print STDOUT &amp;quot;$iconved_reply\n&amp;quot; if $opt_i;
+} else {
+    print &amp;quot;No USSD reply!\n&amp;quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Решено: Net::SSH::Perl Can`t bind socket to port 1023</title>
+      <link>http://sclif.pro/post/2012-04-02-%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%BE-netsshperl-cant-bind-socket-to-port-1023/</link>
+      <pubDate>Mon, 02 Apr 2012 16:42:37 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2012-04-02-%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%BE-netsshperl-cant-bind-socket-to-port-1023/</guid>
+      <description>&lt;p&gt;Собрался написать не большой скрипт, который на удаленном сервере через ssh добавляет или удаляет правила iptables.Написал тестовый скрипт.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;use Net::SSH::Perl;
+
+my $host =&amp;quot;xx.xx.xx.xx&amp;quot;;
+my $user = &amp;quot;user&amp;quot;;
+my $pass = &amp;quot;paswd&amp;quot;;
+my $cmd = &amp;quot;uname -a&amp;quot;;
+my $ssh = Net::SSH::Perl-&amp;amp;gt;new (
+   $host,
+   protocol =&amp;amp;gt; 2,
+   port =&amp;amp;gt; 22,
+   debug =&amp;amp;gt; 1,
+   );
+$ssh-&amp;amp;gt;login($user,$pass);
+my ($stdout, $stderr, $exit) = $ssh-&amp;amp;gt;cmd($cmd);
+print &amp;quot;$stdout&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Запустил один раз и он отработал нормально и сразу же второй раз. И тут выпала ошибка &lt;strong&gt;Net::SSH Can&amp;#8217;t bind socket to port 1023 Адрес уже используется. &lt;/strong&gt;При чем на другом сервере такой проблемы не было с идентичной Ubuntu Server. Переставил несколько раз пакет Net::SSH:Perl и не помогло. Почитав в Интернете я понял в чем проблема. SSH клиент если запускать от root открывает привилегированный порт в моем случае 1023. И не закрывает socket. Соответственно, если надо открыть еще одно соединение, то нужно использовать порты больше 1024. Отключается данная опция в файлах .ssh/ssh_config и /etc/ssh/ssh_config параметром &lt;strong&gt;UsePrivilegedPort no&lt;/strong&gt;, но почему Net::SSH:Perl файл ssh_config искал в /etc. Пришлось просто еще раз скопировать и туда. И все заработало 🙂&lt;/p&gt;
+
+&lt;p&gt;А вот и скрипт управляемый iptables. Запускаем ./script iptables -A INPUT -s 0/0 -j ACCEPT. Когда происходит удаление, то скрипт удаляет все одинаковые правила, пока iptables не выдаст ошибку.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/perl
+
+use strict;
+use warnings;
+use Net::SSH::Perl;
+
+my $host = &#39;xx.xx.xx.xx&#39;;
+my $pass = &#39;xxx&#39;;
+my $user = &#39;user&#39;;
+my $x;
+my $command;
+my ($stdout, $stderr, $exit);
+
+while(@ARGV)
+                { $x = shift @ARGV;
+                  $command .= &amp;quot; $x&amp;quot;;
+                }
+
+my $ssh = Net::SSH::Perl-&amp;amp;gt;new($host, protocol =&amp;amp;gt; &#39;2&#39;);
+$ssh-&amp;amp;gt;login($user, $pass);
+
+if ($command=~m/\-D/) {
+
+        do
+                {
+                ($stdout, $stderr, $exit) = $ssh-&amp;amp;gt;cmd($command);
+                } while(!$stderr);
+
+        }
+        else
+        {
+        $ssh-&amp;amp;gt;cmd($command);
+        }
+
+$ssh-&amp;amp;gt;cmd(&amp;quot;exit&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

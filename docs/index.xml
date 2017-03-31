@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ИТ заметки</title>
+    <link>http://sclif.pro/index.xml</link>
+    <description>Recent content on ИТ заметки</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-ru</language>
+    <lastBuildDate>Sat, 25 Feb 2017 00:06:48 +0500</lastBuildDate>
+    <atom:link href="http://sclif.pro/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>О себе...</title>
+      <link>http://sclif.pro/about/</link>
+      <pubDate>Sat, 25 Feb 2017 00:06:48 +0500</pubDate>
+      
+      <guid>http://sclif.pro/about/</guid>
+      <description>&lt;p&gt;Меня зовут Александр. Я работаю в сфере ИТ более 18 лет .&lt;/p&gt;
+
+&lt;p&gt;В данный момент я занимаюсь:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;разработкой бизнес приложений и сервисов&lt;/li&gt;
+&lt;li&gt;web программирование python, django, javascript, node.js, blank&lt;/li&gt;
+&lt;li&gt;настройкой и поддержкой VOIP на основе open source продуктов Asterisk, Freeswitch, Opensips, Kamailio и т.д.&lt;/li&gt;
+&lt;li&gt;прикладным программированием на уровне системного администратора на perl, php, python, shell, sql, lua&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Данный блог я завел, что-бы хоть как-то упорядочить мои наработки. Постепенно я буду выкладывать посты на различные ИТ темы.&lt;/p&gt;
+
+&lt;p&gt;Если кого-нибудь что-то заинтересует он может со мной связаться:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;email: sclif13[собака]ya.ru&lt;/li&gt;
+&lt;li&gt;skype: sclif13&lt;/li&gt;
+&lt;li&gt;telegram: &lt;a href=&#34;https://t.me/sclif13&#34;&gt;@sclif13&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Docker Asterisk WebRTC</title>
+      <link>http://sclif.pro/post/2015-09-13-docker-asterisk-webrtc/</link>
+      <pubDate>Sun, 13 Sep 2015 08:41:19 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2015-09-13-docker-asterisk-webrtc/</guid>
+      <description>&lt;p&gt;После нескольких часов экспериментов я создал docker на основе Centos 6 и Asterisk 13.5.0. Вышел он давольно увесистый в 1.3 Гб. Собран с поддержкой WebRTC.&lt;/p&gt;
+
+&lt;p&gt;Как пользоваться?&lt;/p&gt;
+
+&lt;p&gt;Качаем готовый image c &lt;a href=&#34;https://hub.docker.com/r/sclif13/docker-asterisk13-webrtc/&#34; target=&#34;_blank&#34;&gt;hub.docker.com&lt;/a&gt; :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker pull sclif13/docker-asterisk13-webrtc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Затем необходимо создать docker :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -d -t --name=asterisk -p 5060:5060/udp \
+       -p 10000-10200:10000-10200/udp \
+       -p 8088:8088 \
+       -v /data/asterisk/etc:/etc/asterisk \
+       sclif13/docker-asterisk13-webrtc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Указываем порты 5060 для SIP, 10000-10200 для RTP, 8088  для webrtc. Так же если необходимо вынести конфиги наружу указываем папку где они будут лежать в вашей системе(/data/asterisk/etc) и в самом docker(/etc/asterisk)&lt;/p&gt;
+
+&lt;p&gt;После того как будет создан и запущен ваш docker нужно его сконфигурировать и для начала скопировать стандартные конфиги.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker exec  -it asterisk bash
+cd /usr/src/asterisk-*
+make samples
+exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Теперь в вашей папке(/data/asterisk/etc) должны появиться конфиги. Далее гуглим как настроить этот самый WebRTC для Asterisk. Чтобы попасть в консоль самого Asterisk выполняем следующую команду:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker exec  -it asterisk asterisk -rvvvvvvvvvvvvvvvvvvc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;P.S. Обновил asterisk до 13.7.0&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Django замена повторяющихся слэшей в url</title>
+      <link>http://sclif.pro/post/2015-04-06-python-django-%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D0%B0-%D0%BF%D0%BE%D0%B2%D1%82%D0%BE%D1%80%D1%8F%D1%8E%D1%89%D0%B8%D1%85%D1%81%D1%8F-%D1%81%D0%BB%D1%8D%D1%88%D0%B5%D0%B9-%D0%B2-url/</link>
+      <pubDate>Mon, 06 Apr 2015 17:35:12 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2015-04-06-python-django-%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D0%B0-%D0%BF%D0%BE%D0%B2%D1%82%D0%BE%D1%80%D1%8F%D1%8E%D1%89%D0%B8%D1%85%D1%81%D1%8F-%D1%81%D0%BB%D1%8D%D1%88%D0%B5%D0%B9-%D0%B2-url/</guid>
+      <description>&lt;p&gt;Возникла необходимость удалять слэши в url. Пример:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http://example.com///
+http://example.com/one//two//
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Решение довольно простое. В ursl.py пишем&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;url(r&#39;\/{2,}&#39;, &#39;views.redirect_to&#39;),
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Тем самым производим поиск &lt;strong&gt;r&amp;#8217;\/{2,}&amp;#8217;&lt;/strong&gt; слэшей от 2 и более. Далее совершаем замену на один слэш.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import re
+def redirect_to(request):
+    return redirect(re.sub(r&#39;\/{2,}&#39;, &#39;/&#39;, request.path))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;P.S. Если используете nginx, то в конфиге в контексте http или server выставите &lt;code&gt;merge_slashes off;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Данная директива запрещает преобразование URI путём замены двух и более подряд идущих слэшей (“/”) на один.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Wireshark в docker</title>
+      <link>http://sclif.pro/post/2015-03-12-wireshark-%D0%B2-docker/</link>
+      <pubDate>Thu, 12 Mar 2015 18:12:31 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2015-03-12-wireshark-%D0%B2-docker/</guid>
+      <description>&lt;p&gt;Не давно столкнулся с проблемой установки wireshark 1.12 из исходников на ubuntu desktop 14.04, а точнее был конфликт между библиотеками Xserver. Так как я по большой части использую wireshark для наглядного разбора, а статистику собираю через tcpdump, то решил создать wireshark в docker.&lt;/p&gt;
+
+&lt;p&gt;Dockerfile &lt;a href=&#34;https://github.com/sclif13/docker-wireshark&#34;&gt;https://github.com/sclif13/docker-wireshark&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Статья в помощь по запуску &lt;a href=&#34;http://habrahabr.ru/post/240509/&#34;&gt;http://habrahabr.ru/post/240509/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Opensips &#43; Netup UTM5</title>
+      <link>http://sclif.pro/post/2014-12-23-opensips-netup-utm5/</link>
+      <pubDate>Mon, 22 Dec 2014 20:57:23 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2014-12-23-opensips-netup-utm5/</guid>
+      <description>&lt;p&gt;В преддверии нового 2015 года решил поделиться своим опытом и опытом моего коллеги Евгения.&lt;/p&gt;
+
+&lt;p&gt;Уже давно у меня были попытки связать Kamailio/Opensips с различными биллингами с помощью протокола Radius. Стандартные модули позволяют это сделать, но не могут прочитать ответ от radius сервера, потому как требуют ответ в формате SIP-AVP. И вот начиная с версии 1.6 в opensips появился модуль
+&lt;a href=&#34;http://opensips.org/html/docs/modules/1.11.x/aaa_radius.html&#34; target=&#34;_blank&#34;&gt;aaa_radius&lt;/a&gt;. Сложность использования данного модуля в том, что нам необходимо самим настроить radius пакет Access-Request.&lt;/p&gt;
+
+&lt;p&gt;И так приступим собственно к настройке. Я установил последнюю версию opensips 1.11.3 из репозитория и radiusclient-ng. Необходимые переменные почерпнул в &lt;a href=&#34;http://www.opensips.org/Documentation/Script-CoreVar&#34; target=&#34;_blank&#34;&gt;документации&lt;/a&gt; opensips.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#### Radius
+loadmodule &amp;quot;auth.so&amp;quot;
+modparam(&amp;quot;auth&amp;quot;, &amp;quot;disable_nonce_check&amp;quot;, 1)
+
+loadmodule &amp;quot;aaa_radius.so&amp;quot;
+
+modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;radius_config&amp;quot;, &amp;quot;/etc/radiusclient-ng/radiusclient.conf&amp;quot;)
+modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;fetch_all_values&amp;quot;, 1)
+modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;sets&amp;quot;,&amp;quot;auth_register = (User-Name = $fU,
+                                               Digest-Response = $auth.resp,
+                                               Digest-Realm = $ar,
+                                               Digest-Nonce = $an,
+                                               Digest-User-Name = $au,
+                                               Digest-Uri = $adu,
+                                               Digest-Method  = $avp(method),
+                                               Digest-Qop = $auth.qop,
+                                               Digest-CNonce = $auth.cnonce,
+                                               Digest-Nonce-Count = $auth.nc)&amp;quot;)
+
+
+modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;sets&amp;quot;,&amp;quot;radius-reply = (h323-credit-amount = $avp(amount),
+                                              h323-credit-time = $avp(credit-time),
+                                              h323-currency = $avp(currency),
+                                              h323-return-code = $avp(return-code))&amp;quot;)
+
+modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;sets&amp;quot;,&amp;quot;auth_invite = (User-Name = $fU,
+                                             h323-conf-id=$ci,
+                                             Called-Station-Id = $rU,
+                                             Calling-Station-Id = $fU,
+                                             Digest-Response = $auth.resp,
+                                             Digest-Realm = $ar,
+                                             Digest-Nonce = $an,
+                                             Digest-User-Name = $au,
+                                             Digest-Uri = $adu,
+                                             Digest-Method  = $avp(method),
+                                             Digest-Qop = $auth.qop,
+                                             Digest-CNonce = $auth.cnonce,
+                                             Digest-Nonce-Count = $auth.nc)&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Для Digest-Method не нашлась переменная, поэтому будем указывать её явно. Для метода REGISTER используем настройки auth_register и radius-reply&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if (is_method(&amp;quot;REGISTER&amp;quot;))
+    {
+        if($adu != NULL) {
+            $avp(method) = &amp;quot;REGISTER&amp;quot;;
+            radius_send_auth(&amp;quot;auth_register&amp;quot;,&amp;quot;radius-reply&amp;quot;);
+            switch ($rc) {
+                case 1:
+                    xlog(&amp;quot;authentication ok \n&amp;quot;);
+                    xlog(&amp;quot;$avp(credit-time)&amp;quot;);
+                    xlog(&amp;quot;$avp(return-code)&amp;quot;);
+                    xlog(&amp;quot;$var(amount)&amp;quot;);
+                    break;
+                case -1:
+                    xlog(&amp;quot;error during authentication\n&amp;quot;);
+                    sl_send_reply(&amp;quot;503&amp;quot;, &amp;quot;Service Unavailable&amp;quot;);
+                    break;
+                case -2:
+                    xlog(&amp;quot;authentication denied \n&amp;quot;);
+                    sl_send_reply(&amp;quot;401&amp;quot;, &amp;quot;Unauthorized&amp;quot;);
+                    break;
+            }
+        } else {
+            www_challenge(&amp;quot;&amp;quot;, &amp;quot;1&amp;quot;);
+            exit;
+            };
+
+        if (   0 ) setflag(TCP_PERSISTENT);
+        if (!save(&amp;quot;location&amp;quot;))
+            sl_reply_error();
+
+        exit;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Для метода INVITE используем настройки auth_invite и radius-reply&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;route[relay] {
+
+    if (is_method(&amp;quot;INVITE&amp;quot;) &amp;amp;&amp;amp; !has_totag()) {
+        if($adu != NULL) {
+            $avp(method) = &amp;quot;INVITE&amp;quot;;
+            radius_send_auth(&amp;quot;auth_invite&amp;quot;,&amp;quot;radius-reply&amp;quot;);
+            switch ($rc) {
+                case 1:
+                    xlog(&amp;quot;authentication ok \n&amp;quot;);
+                    xlog(&amp;quot;$avp(credit-time)&amp;quot;);
+                    xlog(&amp;quot;$avp(return-code)&amp;quot;);
+                    xlog(&amp;quot;$avp(amount)&amp;quot;);
+                    break;
+                case -1:
+                    xlog(&amp;quot;error during authentication\n&amp;quot;);
+                    sl_send_reply(&amp;quot;503&amp;quot;, &amp;quot;Service Unavailable&amp;quot;);
+                    break;
+                case -2:
+                    xlog(&amp;quot;authentication denied \n&amp;quot;);
+                    sl_send_reply(&amp;quot;401&amp;quot;, &amp;quot;Unauthorized&amp;quot;);
+                    break;
+            }
+        } else {
+            proxy_challenge(&amp;quot;&amp;quot;, &amp;quot;1&amp;quot;);
+            exit;
+            };
+
+
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;При настройке возникли трудности с словарями radiusclient-ng, которые могут возникнуть у вас.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:aaa_radius:init_radius_handle: attribute not found Cisco:h323-return-code
+Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:aaa_radius:send_auth_fixup: invalid radius handle
+Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:core:fix_actions: fixing failed (code=-1) at cfg line 297
+Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:core:main: failed to fix configuration with err code -1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;По ссылке &lt;a href=&#34;https://github.com/sclif13/opensips-utm5&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;https://github.com/sclif13/opensips-utm5&#34;&gt;https://github.com/sclif13/opensips-utm5&lt;/a&gt;&lt;/a&gt; вы найдете полный пример.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Freeswitch &#43; mod_xml_radius &#43; Netup UTM5</title>
+      <link>http://sclif.pro/post/2014-06-28-freeswitch-mod_xml_radius-netup-utm5/</link>
+      <pubDate>Sat, 28 Jun 2014 16:47:56 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2014-06-28-freeswitch-mod_xml_radius-netup-utm5/</guid>
+      <description>&lt;p&gt;Обратились ко мне с просьбой настроить связку Freeswitch + mod_xml_radius + Netup UTM5. Ну собственно сам процесс.&lt;/p&gt;
+
+&lt;p&gt;Про то как устанавливать Freeswitch и Netup UTM5 описано в документации. Скажу только, что Freeswitch установил из пакетов, а  модуль mod_xml_radius скомпилировал из исходников.&lt;/p&gt;
+
+&lt;p&gt;Теперь настраиваем mod_xml_radius.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Копируем xml_radius.conf.xml из исходников в папку /etc/freeswitch/autoload_configs/ и добавляем в файле modules.conf.xml наш модуль mod_xml_radius.&lt;/li&gt;
+&lt;li&gt;В файле xml_radius.conf.xml прописываем сервер и ключ доступа NAS.&lt;/li&gt;
+&lt;li&gt;Заменяем словари радиуса идущие в комплекте с модулем на словари идущие с  пакетом &lt;strong&gt;radiusclient-ng&lt;/strong&gt; и прописываем пути.&lt;/li&gt;
+&lt;li&gt;В файле &lt;strong&gt;dictionary.sip&lt;/strong&gt; имя атрибута&lt;strong&gt; Digest-User-Name&lt;/strong&gt; меняем на &lt;strong&gt;Digest-Username&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Для accounting пакетов я добавляем параметр&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;param name=&amp;quot;Acct-Session-Id&amp;quot; variable=&amp;quot;uuid&amp;quot; format=&amp;quot;%s&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Все. Создаем услугу и телефон и проверяем. Если что-то не так, смотрим логи.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Wifi Hotspot на основе Netup UTM5 &#43; Mikrotik</title>
+      <link>http://sclif.pro/post/2013-10-06-wifi-hotspot-%D0%BD%D0%B0-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B5-netup-utm5-mikrotik/</link>
+      <pubDate>Sun, 06 Oct 2013 17:13:22 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2013-10-06-wifi-hotspot-%D0%BD%D0%B0-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B5-netup-utm5-mikrotik/</guid>
+      <description>&lt;p&gt;Хочу поделиться своим опытов внедрения платного Wifi hotspot на основе биллинга Netup UTM5 и Mikrotik Hotspot. Не собираюсь открывать Америку, опишу сам концепт, а остальное додумаете или найдете на &lt;a title=&#34;Форум Netup&#34; href=&#34;http://www.netup.ru/phpbb/index.php&#34; target=&#34;_blank&#34;&gt;форуме&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Берем отдельный биллинг и создаем в нем тариф или несколько тарифов с услугой Dialup. Я создал тариф 50 рублей за час с равномерным списанием в течении суток, т. е. расчетный период 1 день. Настроил mikrotik c hotspot и связал его с биллингом через Radius.&lt;/p&gt;
+
+&lt;p&gt;Далее пользователь заходит на страницу hotspot, где ему предложено ввести логин и пароль, если их нет, то пройти на сайт регистрации. На сайте регистрации пользователь в поле логин вводит свой номер телефона , а так же заполняет поля пароля и email. После того как пользователь нажимает кнопку регистрации в биллинге создается аккаунт через urfa клиент.&lt;/p&gt;
+
+&lt;p&gt;Затем пользователь оплачивает доступ через платежные системы, использую как идентификатор свой номер телефона. Заходит в личный кабинет и активирует тариф опять же с помощью скрипта и urfa клиента. Все теперь пользователь может авторизоваться и пользоваться пока у него не закончатся деньги.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Вывод времени на английском на perl.</title>
+      <link>http://sclif.pro/post/2013-06-24-%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4-%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%B8-%D0%BD%D0%B0-%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%BC-%D0%BD%D0%B0-perl/</link>
+      <pubDate>Mon, 24 Jun 2013 06:52:40 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2013-06-24-%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4-%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%B8-%D0%BD%D0%B0-%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%BC-%D0%BD%D0%B0-perl/</guid>
+      <description>&lt;p&gt;Появилась задача вывести время на английском в русской локали ru_RU.UTF-8.&lt;/p&gt;
+
+&lt;p&gt;Date: Mon, 24 Jun 2013 12:39:08 +0600&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/perl
+use POSIX;
+setlocale(LC_TIME,&amp;quot;C&amp;quot;);
+print &amp;quot;Date: &amp;quot; . strftime(&amp;quot;%a, %d %b %Y %H:%M:%S %z&amp;quot;, localtime) . &amp;quot;\n&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Решено: USSD запрос в linux c помощью huawei e1550 (Мегафон)</title>
+      <link>http://sclif.pro/post/2013-03-07-%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%BE-ussd-%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81-%D0%B2-linux-c-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-huawei-e1550-%D0%BC%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD/</link>
+      <pubDate>Thu, 07 Mar 2013 06:48:25 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2013-03-07-%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%BE-ussd-%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81-%D0%B2-linux-c-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-huawei-e1550-%D0%BC%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD/</guid>
+      <description>&lt;p&gt;Появилась необходимость контролировать баланс sim мегафона. Обычный ussd запрос *100# по каким-то причинам не захотел работать.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;#/usr/bin/ussd.pl -vi \*111\*1*2#&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/perl
+
+use Getopt::Std;
+use Device::Gsm::Pdu;
+use Text::Iconv;
+
+# defaults
+$opt_r = &amp;quot;/dev/ttyUSB2&amp;quot;;
+$opt_s = &amp;quot;/dev/ttyUSB0&amp;quot;;
+$conv = Text::Iconv-&amp;amp;gt;new(&#39;utf16be&#39;,&#39;utf8&#39;);
+my $USAGE = &amp;amp;lt;&amp;amp;lt;__EOU;
+
+Usage: $0 [-r input_port] [-s output_port] [-n] [-h] [-v] [-i] [-w] ussd_msg
+
+Description:
+  Send and receive 7-bit PDU-encoded USSD messages.
+  Written and tested for Huawei E1550 GSM/UMTS USB modem.
+
+Options:
+  -r port   Port to receive data from. Default: $opt_r
+  -s port   Port to send AT commands to. Default: $opt_s
+  -n        Do not send any data to port. Useful with -v.
+  -h        Print this help.
+  -v        Be verbose.
+  -i     Use iconv [from utf16be to utf8] to reply
+  -w reply workaround (try it if script can not decode reply)
+__EOU
+
+sub HELP_MESSAGE {print &amp;quot;$USAGE\n&amp;quot;; exit;}
+sub VERSION_MESSAGE {};
+getopts (&#39;r:s:hnviw&#39;);
+HELP_MESSAGE() and exit if (! $ARGV[0]) or defined($opt_h);
+
+print &amp;quot;USSD MSG: $ARGV[0]\n&amp;quot; if $opt_v;
+my $ussd_req = Device::Gsm::Pdu::encode_text7($ARGV[0]);
+$ussd_req =~ s/^..//;
+print &amp;quot;PDU ENCODED: $ussd_req\n&amp;quot; if $opt_v;
+
+my $ussd_reply;
+if (! $opt_n) {
+    open (SENDPORT, &#39;+&amp;amp;lt;&#39;, $opt_s) or die &amp;quot;Can&#39;t open &#39;$opt_s&#39;: $!\n&amp;quot;;
+    print SENDPORT &#39;AT+CUSD=1,&#39;,$ussd_req,&amp;quot;,15\r\n&amp;quot;;
+    close SENDPORT;
+    open (RCVPORT, $opt_r) or die &amp;quot;Can&#39;t open &#39;$opt_r&#39;: $!\n&amp;quot;;
+    print &amp;quot;Waiting for USSD reply...\n&amp;quot; if $opt_v;
+    while () {
+        chomp;
+        die &amp;quot;USSD ERROR\n&amp;quot; if $_ eq &amp;quot;+CUSD: 2&amp;quot;;
+        if (/^\+CUSD: 0,\&amp;quot;([A-F0-9]+)\&amp;quot;/) {
+            $ussd_reply = $1;
+            print &amp;quot;PDU USSD REPLY: $ussd_reply\n&amp;quot; if $opt_v;
+            last;
+        }
+        print &amp;quot;Got unknown USSD message: $_\n&amp;quot; if /^\+CUSD:/ and $opt_v;
+    }
+}
+
+if ($ussd_reply) {
+      $iconved_reply = $conv-&amp;amp;gt;convert(pack(&#39;H*&#39;, $ussd_reply));
+      $decoded_ussd_reply = Device::Gsm::Pdu::decode_text7(&#39;00&#39;.$ussd_reply);
+      print STDOUT &amp;quot;USSD REPLY: $decoded_ussd_reply\n&amp;quot; if not $opt_i;
+      print STDOUT &amp;quot;$iconved_reply\n&amp;quot; if $opt_i;
+} else {
+    print &amp;quot;No USSD reply!\n&amp;quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Костыль №2. Google Docs автоматическая сортировка в таблице.</title>
+      <link>http://sclif.pro/post/2012-07-14-%D0%BA%D0%BE%D1%81%D1%82%D1%8B%D0%BB%D1%8C-%E2%84%962-google-docs-%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D1%81%D0%BE%D1%80%D1%82%D0%B8%D1%80%D0%BE%D0%B2/</link>
+      <pubDate>Sat, 14 Jul 2012 11:53:19 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2012-07-14-%D0%BA%D0%BE%D1%81%D1%82%D1%8B%D0%BB%D1%8C-%E2%84%962-google-docs-%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D1%81%D0%BE%D1%80%D1%82%D0%B8%D1%80%D0%BE%D0%B2/</guid>
+      <description>&lt;p&gt;Появилась задача в Google Docs автоматически сортировать определенный столбец в таблице по возрастанию, потратив 3 часа времени и перебрав пару решений из коллекции скриптов получил вот такое вот решение. Создал скрипт-триггер который срабатывает при редактировании таблицы.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function myFunction() {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var range = ss.getSheets()[0].getRange(&amp;quot;A2:E255&amp;quot;); // A2:E255 диапозон сортировки
+    range.sort({column: 5, ascending: false}); // сортировать 5 колонку по убыванию
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Решено: Net::SSH::Perl Can`t bind socket to port 1023</title>
+      <link>http://sclif.pro/post/2012-04-02-%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%BE-netsshperl-cant-bind-socket-to-port-1023/</link>
+      <pubDate>Mon, 02 Apr 2012 16:42:37 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2012-04-02-%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%BE-netsshperl-cant-bind-socket-to-port-1023/</guid>
+      <description>&lt;p&gt;Собрался написать не большой скрипт, который на удаленном сервере через ssh добавляет или удаляет правила iptables.Написал тестовый скрипт.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;use Net::SSH::Perl;
+
+my $host =&amp;quot;xx.xx.xx.xx&amp;quot;;
+my $user = &amp;quot;user&amp;quot;;
+my $pass = &amp;quot;paswd&amp;quot;;
+my $cmd = &amp;quot;uname -a&amp;quot;;
+my $ssh = Net::SSH::Perl-&amp;amp;gt;new (
+   $host,
+   protocol =&amp;amp;gt; 2,
+   port =&amp;amp;gt; 22,
+   debug =&amp;amp;gt; 1,
+   );
+$ssh-&amp;amp;gt;login($user,$pass);
+my ($stdout, $stderr, $exit) = $ssh-&amp;amp;gt;cmd($cmd);
+print &amp;quot;$stdout&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Запустил один раз и он отработал нормально и сразу же второй раз. И тут выпала ошибка &lt;strong&gt;Net::SSH Can&amp;#8217;t bind socket to port 1023 Адрес уже используется. &lt;/strong&gt;При чем на другом сервере такой проблемы не было с идентичной Ubuntu Server. Переставил несколько раз пакет Net::SSH:Perl и не помогло. Почитав в Интернете я понял в чем проблема. SSH клиент если запускать от root открывает привилегированный порт в моем случае 1023. И не закрывает socket. Соответственно, если надо открыть еще одно соединение, то нужно использовать порты больше 1024. Отключается данная опция в файлах .ssh/ssh_config и /etc/ssh/ssh_config параметром &lt;strong&gt;UsePrivilegedPort no&lt;/strong&gt;, но почему Net::SSH:Perl файл ssh_config искал в /etc. Пришлось просто еще раз скопировать и туда. И все заработало 🙂&lt;/p&gt;
+
+&lt;p&gt;А вот и скрипт управляемый iptables. Запускаем ./script iptables -A INPUT -s 0/0 -j ACCEPT. Когда происходит удаление, то скрипт удаляет все одинаковые правила, пока iptables не выдаст ошибку.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/perl
+
+use strict;
+use warnings;
+use Net::SSH::Perl;
+
+my $host = &#39;xx.xx.xx.xx&#39;;
+my $pass = &#39;xxx&#39;;
+my $user = &#39;user&#39;;
+my $x;
+my $command;
+my ($stdout, $stderr, $exit);
+
+while(@ARGV)
+                { $x = shift @ARGV;
+                  $command .= &amp;quot; $x&amp;quot;;
+                }
+
+my $ssh = Net::SSH::Perl-&amp;amp;gt;new($host, protocol =&amp;amp;gt; &#39;2&#39;);
+$ssh-&amp;amp;gt;login($user, $pass);
+
+if ($command=~m/\-D/) {
+
+        do
+                {
+                ($stdout, $stderr, $exit) = $ssh-&amp;amp;gt;cmd($command);
+                } while(!$stderr);
+
+        }
+        else
+        {
+        $ssh-&amp;amp;gt;cmd($command);
+        }
+
+$ssh-&amp;amp;gt;cmd(&amp;quot;exit&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Оо трюки</title>
+      <link>http://sclif.pro/post/2012-04-02-%D0%BE%D0%BE-%D1%82%D1%80%D1%8E%D0%BA%D0%B8/</link>
+      <pubDate>Mon, 02 Apr 2012 16:23:14 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2012-04-02-%D0%BE%D0%BE-%D1%82%D1%80%D1%8E%D0%BA%D0%B8/</guid>
+      <description>
+
+&lt;p&gt;Пришлось редактировать большую таблицу в OpenOffice и вот какие функции мне пригодились:&lt;/p&gt;
+
+&lt;h4 id=&#34;1-как-добавить-в-начало-ячейки-символ-для-всего-столбца&#34;&gt;1. Как добавить в начало ячейки символ для всего столбца?&lt;/h4&gt;
+
+&lt;p&gt;Пишем следующую формулу =&amp;ldquo;№&amp;rdquo;&amp;amp;A1, где № &amp;#8212; это наш символ, A1 &amp;#8212; соответственно наша ячейка, а дальше растягиваем эту формулу сколько надо.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://sclif.pro/images/2012/04/1.jpg&#34; style=&#34;width:300px&#34;/&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;2-как-разбить-текст-вида-1-2-3-4-5-в-одной-ячейки-по-столбцам&#34;&gt;2. Как разбить текст вида 1,2,3,4,5 в одной ячейки по столбцам?&lt;/h4&gt;
+
+&lt;p&gt;Заходим в меню Данные-&amp;gt;Текст по столбцам&amp;#8230; и там выбираем разделитель, в нашем случае запятая. Тут же видим что из этого получилось.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://sclif.pro/images/2012/04/2.jpg&#34; style=&#34;width:500px&#34;/&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;3-как-преобразовать-строку-в-столбец-или-столбец-в-строку&#34;&gt;3. Как преобразовать строку в столбец или столбец в строку?&lt;/h4&gt;
+
+&lt;p&gt;Выделяем строку или столбец, копируем Ctrl+C и жмем Ctrl+Shift+V (Вставить как). Ставим галочку Транспонировать и жмем Ok.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://sclif.pro/images/2012/04/3.jpg&#34; style=&#34;width:500px&#34;/&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Костыль №1.1 Перевод DBF в XLS в фоновом режиме</title>
+      <link>http://sclif.pro/post/2012-04-02-%D0%BA%D0%BE%D1%81%D1%82%D1%8B%D0%BB%D1%8C-%E2%84%961-1-%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4-dbf-%D0%B2-xls-%D0%B2-%D1%84%D0%BE%D0%BD%D0%BE%D0%B2%D0%BE%D0%BC-%D1%80%D0%B5%D0%B6%D0%B8%D0%BC%D0%B5/</link>
+      <pubDate>Mon, 02 Apr 2012 16:11:55 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2012-04-02-%D0%BA%D0%BE%D1%81%D1%82%D1%8B%D0%BB%D1%8C-%E2%84%961-1-%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4-dbf-%D0%B2-xls-%D0%B2-%D1%84%D0%BE%D0%BD%D0%BE%D0%B2%D0%BE%D0%BC-%D1%80%D0%B5%D0%B6%D0%B8%D0%BC%D0%B5/</guid>
+      <description>&lt;p&gt;Появилось желание перевести данный костыль в фоновый режим, так как надоели открывающиеся окна. Чуть подправим процесс открытия файла, а именно сделаем его невидимым.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&#39;Открываем DBF
+        cURLDBF = ConvertToURL( cDbfFileToOpen )
+        oCalcDoc = StarDesktop.loadComponentFromURL( cURLDBF, &amp;quot;_blank&amp;quot;, 0, _
+                Array( MakePropertyValue( &amp;quot;FilterName&amp;quot;, &amp;quot;dBase&amp;quot;),_
+                MakePropertyValue( &amp;quot;FilterOptions&amp;quot;, &amp;quot;30&amp;quot; ),_
+                MakePropertyValue( &amp;quot;Hidden&amp;quot;, True)) )
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Костыль №1 Перевод DBF в XLS</title>
+      <link>http://sclif.pro/post/2012-04-02-%D0%BA%D0%BE%D1%81%D1%82%D1%8B%D0%BB%D1%8C-%E2%84%961-%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4-dbf-%D0%B2-xls/</link>
+      <pubDate>Mon, 02 Apr 2012 16:04:30 +0000</pubDate>
+      
+      <guid>http://sclif.pro/post/2012-04-02-%D0%BA%D0%BE%D1%81%D1%82%D1%8B%D0%BB%D1%8C-%E2%84%961-%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4-dbf-%D0%B2-xls/</guid>
+      <description>&lt;p&gt;Решил поделиться своими костылями 🙂 Очень часто приходиться писать маленькие программки (костыли), которые выполняют какую-то рутинную работу.&lt;/p&gt;
+
+&lt;p&gt;И так костыль №1. Появилась задача перевести кучу dbf файлов в xls с последующим редактированием. Конечно существуют программы, которые перекодируют dbf в xls, но они платные и не позволяют производить редактирования внутри файла. Поэтому выбор мой пал на Open Office и встроенный Basic.&lt;/p&gt;
+
+&lt;p&gt;Данный макрос берет файлы dbf из папки C:\TEMP\detail\ и кладет XLS в C:\TEMP\detail\XLS\ . Вы можете поправить на свои пути.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Sub Main
+
+Dim NextFile As String
+NextFile = Dir(&amp;quot;C:\TEMP\detail\*.dbf&amp;quot;, 0)
+
+While NextFile &amp;amp;lt;&amp;amp;gt; &amp;quot;&amp;quot;
+
+cDbfFileToOpen = &amp;quot;C:\TEMP\detail\&amp;quot; + NextFile
+cXlsFileToSave = &amp;quot;C:\TEMP\detail\XLS\&amp;quot; + NextFile
+ResultString = InStr(1, cXlsFileToSave, &amp;quot;dbf&amp;quot;)
+Mid(cXlsFileToSave, ResultString, 3, &amp;quot;XLS&amp;quot;)
+
+&#39;Открываем DBF
+cURLDBF = ConvertToURL( cDbfFileToOpen )
+oCalcDoc = StarDesktop.loadComponentFromURL( cURLDBF, &amp;quot;_blank&amp;quot;, 0, _
+Array( MakePropertyValue( &amp;quot;FilterName&amp;quot;, &amp;quot;dBase&amp;quot; ),_
+MakePropertyValue( &amp;quot;FilterOptions&amp;quot;, &amp;quot;30&amp;quot; )) )
+
+&#39;Удаляем 2 первых столбца
+Sheet = oCalcDoc.Sheets(0)
+Sheet.Columns.removeByIndex(0, 2)
+
+&#39;Удаляем еще 4 столбца
+Sheet.Columns.removeByIndex(1, 2)
+Sheet.Columns.removeByIndex(3, 1)
+Sheet.Columns.removeByIndex(6, 1)
+
+&#39;Изменяем формат столбцов 7 и 8
+Dim NumberFormats As Object
+Dim NumberFormatString As String
+Dim NumberFormatId As Long
+Dim LocalSettings As New com.sun.star.lang.Locale
+
+LocalSettings.Language = &amp;quot;ru&amp;quot;
+LocalSettings.Country = &amp;quot;ru&amp;quot;
+
+NumberFormats = oCalcDoc.NumberFormats
+NumberFormatString = &amp;quot;# ##0,00 [$руб.-419];[RED]-# ##0,00 [$руб.-419]&amp;quot;
+
+NumberFormatId = NumberFormats.addNew(NumberFormatString, LocalSettings)
+
+Col = Sheet.Columns(7)
+Col.NumberFormat = NumberFormatId
+Col.OptimalWidth = True
+&#39;Выравнивание столбца по центру
+Col.HoriJustify = com.sun.star.table.CellHoriJustify.CENTER
+
+Col = Sheet.Columns(8)
+Col.NumberFormat = NumberFormatId
+Col.OptimalWidth = True
+
+&#39;Изменяем название столбцов
+Cell = Sheet.getCellByPosition(0, 0)
+Cell.String = &amp;quot;Первый столбец&amp;quot;
+
+Cell = Sheet.getCellByPosition(1, 0)
+Cell.String = &amp;quot;Второй&amp;quot;
+
+Cell = Sheet.getCellByPosition(2, 0)
+Cell.String = &amp;quot;Третий&amp;quot;
+
+Cell = Sheet.getCellByPosition(3, 0)
+Cell.String = &amp;quot;Четвертый&amp;quot;
+
+Cell = Sheet.getCellByPosition(4, 0)
+Cell.String = &amp;quot;Пятый&amp;quot;
+
+Cell = Sheet.getCellByPosition(5, 0)
+Cell.String = &amp;quot;Шестой&amp;quot;
+
+Cell = Sheet.getCellByPosition(6, 0)
+Cell.String = &amp;quot;Седьмой&amp;quot;
+
+Cell = Sheet.getCellByPosition(7, 0)
+Cell.String = &amp;quot;Восьмой&amp;quot;
+
+&#39;Выставляем оптимальную ширину столбцов
+For I = 0 To 7
+Col = Sheet.Columns(I)
+Col.OptimalWidth = True
+Next I
+
+Col = Sheet.Columns(2)
+Col.Width = 5000
+
+&#39;Сохраняем в XLS
+cURLXLS = ConvertToURL( cXlsFileToSave )
+oCalcDoc.storeToURL( cURLXLS, _
+Array( MakePropertyValue( &amp;quot;FilterName&amp;quot;, &amp;quot;MS Excel 97&amp;quot; ) ) )
+
+oCalcDoc.close( True )
+
+NextFile = Dir
+Wend
+
+End Sub
+
+Function MakePropertyValue( Optional cName As String, Optional uValue ) As com.sun.star.beans.PropertyValue
+Dim oPropertyValue As New com.sun.star.beans.PropertyValue
+If Not IsMissing( cName ) Then
+oPropertyValue.Name = cName
+EndIf
+If Not IsMissing( uValue ) Then
+oPropertyValue.Value = uValue
+EndIf
+MakePropertyValue() = oPropertyValue
+End Function
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tags</title>
+      <link>http://sclif.pro/tags/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sclif.pro/tags/</guid>
+      <description>&lt;p&gt;tags&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

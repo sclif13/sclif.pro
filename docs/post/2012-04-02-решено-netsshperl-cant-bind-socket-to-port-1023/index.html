@@ -1,0 +1,241 @@
+    <!DOCTYPE html>
+<html lang="ru-ru">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Sclf.pro">
+		<meta name="description" content="ИТ заметки">
+		<meta name="generator" content="Hugo 0.18.1" />
+		<title>Решено: Net::SSH::Perl Can`t bind socket to port 1023 &middot; ИТ заметки</title>
+		<link rel="shortcut icon" href="http://sclif.pro/images/favicon.ico">
+		<link rel="stylesheet" href="http://sclif.pro/css/style.css">
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atom-one-light.min.css">
+		
+
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='http://sclif.pro/'> <span class="arrow">←</span>Home</a>
+	
+
+	
+		<a href='http://sclif.pro/post'>Archive</a>
+	
+
+	
+		<a href='http://sclif.pro/tags'>Tags</a>
+	
+
+	
+		<a href='http://sclif.pro/about'>About</a>
+	
+
+	
+
+	
+</nav>
+
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>
+                        
+                            Решено: Net::SSH::Perl Can`t bind socket to port 1023
+                        
+                    </h1>
+                    <h2 class="headline">
+                    Apr 2, 2012 16:42
+                    · 270 words
+                    · 2 minutes read
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="http://sclif.pro/tags/linux">linux</a>
+                          
+                              <a href="http://sclif.pro/tags/perl">Perl</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                <section id="post-body">
+                    <p>Собрался написать не большой скрипт, который на удаленном сервере через ssh добавляет или удаляет правила iptables.Написал тестовый скрипт.</p>
+
+<pre><code>use Net::SSH::Perl;
+
+my $host =&quot;xx.xx.xx.xx&quot;;
+my $user = &quot;user&quot;;
+my $pass = &quot;paswd&quot;;
+my $cmd = &quot;uname -a&quot;;
+my $ssh = Net::SSH::Perl-&amp;gt;new (
+   $host,
+   protocol =&amp;gt; 2,
+   port =&amp;gt; 22,
+   debug =&amp;gt; 1,
+   );
+$ssh-&amp;gt;login($user,$pass);
+my ($stdout, $stderr, $exit) = $ssh-&amp;gt;cmd($cmd);
+print &quot;$stdout&quot;;
+</code></pre>
+
+<p>Запустил один раз и он отработал нормально и сразу же второй раз. И тут выпала ошибка <strong>Net::SSH Can&#8217;t bind socket to port 1023 Адрес уже используется. </strong>При чем на другом сервере такой проблемы не было с идентичной Ubuntu Server. Переставил несколько раз пакет Net::SSH:Perl и не помогло. Почитав в Интернете я понял в чем проблема. SSH клиент если запускать от root открывает привилегированный порт в моем случае 1023. И не закрывает socket. Соответственно, если надо открыть еще одно соединение, то нужно использовать порты больше 1024. Отключается данная опция в файлах .ssh/ssh_config и /etc/ssh/ssh_config параметром <strong>UsePrivilegedPort no</strong>, но почему Net::SSH:Perl файл ssh_config искал в /etc. Пришлось просто еще раз скопировать и туда. И все заработало 🙂</p>
+
+<p>А вот и скрипт управляемый iptables. Запускаем ./script iptables -A INPUT -s 0/0 -j ACCEPT. Когда происходит удаление, то скрипт удаляет все одинаковые правила, пока iptables не выдаст ошибку.</p>
+
+<pre><code>#!/usr/bin/perl
+
+use strict;
+use warnings;
+use Net::SSH::Perl;
+
+my $host = 'xx.xx.xx.xx';
+my $pass = 'xxx';
+my $user = 'user';
+my $x;
+my $command;
+my ($stdout, $stderr, $exit);
+
+while(@ARGV)
+                { $x = shift @ARGV;
+                  $command .= &quot; $x&quot;;
+                }
+
+my $ssh = Net::SSH::Perl-&amp;gt;new($host, protocol =&amp;gt; '2');
+$ssh-&amp;gt;login($user, $pass);
+
+if ($command=~m/\-D/) {
+
+        do
+                {
+                ($stdout, $stderr, $exit) = $ssh-&amp;gt;cmd($command);
+                } while(!$stderr);
+
+        }
+        else
+        {
+        $ssh-&amp;gt;cmd($command);
+        }
+
+$ssh-&amp;gt;cmd(&quot;exit&quot;);
+</code></pre>
+
+                </section>
+            </article>
+
+            
+
+            
+                <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sclif-pro'; 
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+            
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="https://github.com/sclif13">
+        <i class="fa fa-github-square"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+        © Copyright 2017 <i class="fa fa-heart" aria-hidden="true"></i> Sclf.pro
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="http://nodejh.com">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script src="http://sclif.pro/js/main.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script src="http://sclif.pro//js/redirect.js"></script>
+
+
+
+  
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-30560332-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter20519446 = new Ya.Metrika({
+                    id:20519446,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/20519446" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+
+    </body>
+</html>
