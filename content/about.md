@@ -11,14 +11,15 @@ title = "О себе..."
 В данный момент я занимаюсь:
 
   * разработкой бизнес приложений и сервисов
-  * web программирование python, django, javascript, node.js, blank
+  * web программирование javascript, node.js, react.js, redux, blank
   * настройкой и поддержкой VOIP на основе open source продуктов Asterisk, Freeswitch, Opensips, Kamailio и т.д.
   * прикладным программированием на уровне системного администратора на perl, php, python, shell, sql, lua
 
+</br>
+Github: https://github.com/sclif13 </br>
+Docker Hub: https://hub.docker.com/r/sclif13/
 
-Данный блог я завел, что-бы хоть как-то упорядочить мои наработки. Постепенно я буду выкладывать посты на различные ИТ темы.
-
-Если кого-нибудь что-то заинтересует он может со мной связаться:
+Контакты:
 
   * email: sclif13[собака]ya.ru
   * skype: sclif13
