@@ -51,6 +51,7 @@ googleAnalytics = "UA-30560332-1"
 	about = ""
 	archive = ""
 	subscribe = ""
+	projects = ""
 	# Pagination links
 	olderPosts = ""
 	newerPosts = ""

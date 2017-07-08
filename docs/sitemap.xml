@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://sclif.pro/projects/</loc>
+    <lastmod>2017-07-08T12:38:48+05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://sclif.pro/about/</loc>
     <lastmod>2017-02-25T00:06:48+05:00</lastmod>
   </url>
@@ -161,6 +166,12 @@
   </url>
   
   <url>
+    <loc>http://sclif.pro/tags/projects/</loc>
+    <lastmod>2017-07-08T12:38:48+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://sclif.pro/tags/python/</loc>
     <lastmod>2015-04-06T17:35:12+00:00</lastmod>
     <priority>0</priority>
@@ -212,7 +223,7 @@
   
   <url>
     <loc>http://sclif.pro/categories/y/</loc>
-    <lastmod>2017-02-25T00:06:48+05:00</lastmod>
+    <lastmod>2017-07-08T12:38:48+05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -224,7 +235,7 @@
   
   <url>
     <loc>http://sclif.pro/</loc>
-    <lastmod>2017-02-25T00:06:48+05:00</lastmod>
+    <lastmod>2017-07-08T12:38:48+05:00</lastmod>
     <priority>0</priority>
   </url>
   
