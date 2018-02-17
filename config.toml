@@ -19,12 +19,7 @@ googleAnalytics = "UA-30560332-1"
 	# Disqus comment
 	disqusShortname = "sclif-pro"
 	# Disable disqus comments by set `enableDisqus = "false"`
-	enableDisqus = true
-
-	# Duoshuo comment
-	duoshuoShortname = "your_duoshuo_short_name"
-	# Disable duoshuo comments by set `enableDuoshuo = "false"`
-	enableDuoshuo = false
+	enableDisqus = false
 
 	enableGithubIssuesTips = false
 
