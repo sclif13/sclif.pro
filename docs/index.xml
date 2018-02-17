@@ -437,7 +437,7 @@ if ($ussd_reply) {
 
 &lt;pre&gt;&lt;code&gt;function myFunction() {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
-    var range = ss.getSheets()[0].getRange(&amp;quot;A2:E255&amp;quot;); // A2:E255 диапозон сортировки
+    var range = ss.getSheets()[0].getRange(&amp;quot;A2:E255&amp;quot;); // A2:E255 диапазон сортировки
     range.sort({column: 5, ascending: false}); // сортировать 5 колонку по убыванию
 &lt;/code&gt;&lt;/pre&gt;
 </description>

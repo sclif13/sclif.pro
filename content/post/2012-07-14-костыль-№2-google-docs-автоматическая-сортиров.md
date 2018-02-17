@@ -12,6 +12,6 @@ categories:
 ```
 function myFunction() {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
-    var range = ss.getSheets()[0].getRange("A2:E255"); // A2:E255 диапозон сортировки
+    var range = ss.getSheets()[0].getRange("A2:E255"); // A2:E255 диапазон сортировки
     range.sort({column: 5, ascending: false}); // сортировать 5 колонку по убыванию
 ```
