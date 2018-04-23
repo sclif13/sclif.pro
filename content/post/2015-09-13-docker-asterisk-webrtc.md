@@ -24,7 +24,7 @@ tags:
 docker pull sclif13/docker-asterisk13-webrtc
 ```
 
-Затем необходимо создать docker :
+Затем необходимо создать docker контейнер:
 
 ```
 docker run -d -t --name=asterisk -p 5060:5060/udp \
@@ -34,9 +34,9 @@ docker run -d -t --name=asterisk -p 5060:5060/udp \
        sclif13/docker-asterisk13-webrtc
 ```
 
-Указываем порты 5060 для SIP, 10000-10200 для RTP, 8088  для webrtc. Так же если необходимо вынести конфиги наружу указываем папку где они будут лежать в вашей системе(/data/asterisk/etc) и в самом docker(/etc/asterisk)
+Указываем порты 5060 для SIP, 10000-10200 для RTP, 8088  для webrtc. Так же если необходимо вынести конфиги наружу указываем папку где они будут лежать в вашей системе(/data/asterisk/etc) и в самом docker контейнере (/etc/asterisk)
 
-После того как будет создан и запущен ваш docker нужно его сконфигурировать и для начала скопировать стандартные конфиги.
+После того как будет создан и запущен ваш docker контейнер нужно его сконфигурировать и для начала скопировать стандартные конфиги.
 
 ```
 docker exec  -it asterisk bash
@@ -51,4 +51,4 @@ exit
 docker exec  -it asterisk asterisk -rvvvvvvvvvvvvvvvvvvc
 ```
 
-P.S. Обновил asterisk до 13.7.0
+P.S. Обновил asterisk до 13.14.0

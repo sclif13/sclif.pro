@@ -6,14 +6,12 @@ description = "О себе..."
 title = "О себе..."
 
 +++
-Меня зовут Александр. Я работаю в сфере ИТ более 18 лет .
+Меня зовут Александр. Я работаю в сфере ИТ более 20 лет .
 
 В данный момент я занимаюсь:
 
   * разработкой бизнес приложений и сервисов
-  * web программирование javascript, node.js, react.js, redux, blank
-  * настройкой и поддержкой VOIP на основе open source продуктов Asterisk, Freeswitch, Opensips, Kamailio и т.д.
-  * прикладным программированием на уровне системного администратора на perl, php, python, shell, sql, lua
+  * web программированием на javascript, node.js, react.js, redux, blank
 
 </br>
 Github: https://github.com/sclif13 </br>
