@@ -59,7 +59,7 @@
                     </h1>
                     <h2 class="headline">
                     Sep 13, 2015 08:41
-                    · 154 words
+                    · 157 words
                     · 1 minute read
                       <span class="tags">
                       
@@ -92,7 +92,7 @@
 <pre><code>docker pull sclif13/docker-asterisk13-webrtc
 </code></pre>
 
-<p>Затем необходимо создать docker :</p>
+<p>Затем необходимо создать docker контейнер:</p>
 
 <pre><code>docker run -d -t --name=asterisk -p 5060:5060/udp \
        -p 10000-10200:10000-10200/udp \
@@ -101,9 +101,9 @@
        sclif13/docker-asterisk13-webrtc
 </code></pre>
 
-<p>Указываем порты 5060 для SIP, 10000-10200 для RTP, 8088  для webrtc. Так же если необходимо вынести конфиги наружу указываем папку где они будут лежать в вашей системе(/data/asterisk/etc) и в самом docker(/etc/asterisk)</p>
+<p>Указываем порты 5060 для SIP, 10000-10200 для RTP, 8088  для webrtc. Так же если необходимо вынести конфиги наружу указываем папку где они будут лежать в вашей системе(/data/asterisk/etc) и в самом docker контейнере (/etc/asterisk)</p>
 
-<p>После того как будет создан и запущен ваш docker нужно его сконфигурировать и для начала скопировать стандартные конфиги.</p>
+<p>После того как будет создан и запущен ваш docker контейнер нужно его сконфигурировать и для начала скопировать стандартные конфиги.</p>
 
 <pre><code>docker exec  -it asterisk bash
 cd /usr/src/asterisk-*
@@ -116,7 +116,7 @@ exit
 <pre><code>docker exec  -it asterisk asterisk -rvvvvvvvvvvvvvvvvvvc
 </code></pre>
 
-<p>P.S. Обновил asterisk до 13.7.0</p>
+<p>P.S. Обновил asterisk до 13.14.0</p>
 
                 </section>
             </article>

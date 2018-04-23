@@ -23,7 +23,7 @@
 &lt;pre&gt;&lt;code&gt;docker pull sclif13/docker-asterisk13-webrtc
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Затем необходимо создать docker :&lt;/p&gt;
+&lt;p&gt;Затем необходимо создать docker контейнер:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;docker run -d -t --name=asterisk -p 5060:5060/udp \
        -p 10000-10200:10000-10200/udp \
@@ -32,9 +32,9 @@
        sclif13/docker-asterisk13-webrtc
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Указываем порты 5060 для SIP, 10000-10200 для RTP, 8088  для webrtc. Так же если необходимо вынести конфиги наружу указываем папку где они будут лежать в вашей системе(/data/asterisk/etc) и в самом docker(/etc/asterisk)&lt;/p&gt;
+&lt;p&gt;Указываем порты 5060 для SIP, 10000-10200 для RTP, 8088  для webrtc. Так же если необходимо вынести конфиги наружу указываем папку где они будут лежать в вашей системе(/data/asterisk/etc) и в самом docker контейнере (/etc/asterisk)&lt;/p&gt;
 
-&lt;p&gt;После того как будет создан и запущен ваш docker нужно его сконфигурировать и для начала скопировать стандартные конфиги.&lt;/p&gt;
+&lt;p&gt;После того как будет создан и запущен ваш docker контейнер нужно его сконфигурировать и для начала скопировать стандартные конфиги.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;docker exec  -it asterisk bash
 cd /usr/src/asterisk-*
@@ -47,7 +47,7 @@ exit
 &lt;pre&gt;&lt;code&gt;docker exec  -it asterisk asterisk -rvvvvvvvvvvvvvvvvvvc
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;P.S. Обновил asterisk до 13.7.0&lt;/p&gt;
+&lt;p&gt;P.S. Обновил asterisk до 13.14.0&lt;/p&gt;
 </description>
     </item>
     
