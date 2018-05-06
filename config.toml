@@ -1,5 +1,5 @@
 # Site settings
-baseurl = "http://sclif.pro/"
+baseurl = "//sclif.pro/"
 # HTML Language Code Reference, such as en, zh-cn
 languageCode = "ru-ru"
 publishDir = "docs"

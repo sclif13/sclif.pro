@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Billing on ИТ заметки</title>
-    <link>http://sclif.pro/tags/billing/index.xml</link>
+    <link>//sclif.pro/tags/billing/index.xml</link>
     <description>Recent content in Billing on ИТ заметки</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-ru</language>
-    <atom:link href="http://sclif.pro/tags/billing/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//sclif.pro/tags/billing/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Opensips &#43; Netup UTM5</title>
-      <link>http://sclif.pro/post/2014-12-23-opensips-netup-utm5/</link>
+      <link>//sclif.pro/post/2014-12-23-opensips-netup-utm5/</link>
       <pubDate>Mon, 22 Dec 2014 20:57:23 +0000</pubDate>
       
-      <guid>http://sclif.pro/post/2014-12-23-opensips-netup-utm5/</guid>
+      <guid>//sclif.pro/post/2014-12-23-opensips-netup-utm5/</guid>
       <description>&lt;p&gt;В преддверии нового 2015 года решил поделиться своим опытом и опытом моего коллеги Евгения.&lt;/p&gt;
 
 &lt;p&gt;Уже давно у меня были попытки связать Kamailio/Opensips с различными биллингами с помощью протокола Radius. Стандартные модули позволяют это сделать, но не могут прочитать ответ от radius сервера, потому как требуют ответ в формате SIP-AVP. И вот начиная с версии 1.6 в opensips появился модуль
@@ -144,10 +144,10 @@ Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:core:main: failed to fix config
     
     <item>
       <title>Freeswitch &#43; mod_xml_radius &#43; Netup UTM5</title>
-      <link>http://sclif.pro/post/2014-06-28-freeswitch-mod_xml_radius-netup-utm5/</link>
+      <link>//sclif.pro/post/2014-06-28-freeswitch-mod_xml_radius-netup-utm5/</link>
       <pubDate>Sat, 28 Jun 2014 16:47:56 +0000</pubDate>
       
-      <guid>http://sclif.pro/post/2014-06-28-freeswitch-mod_xml_radius-netup-utm5/</guid>
+      <guid>//sclif.pro/post/2014-06-28-freeswitch-mod_xml_radius-netup-utm5/</guid>
       <description>&lt;p&gt;Обратились ко мне с просьбой настроить связку Freeswitch + mod_xml_radius + Netup UTM5. Ну собственно сам процесс.&lt;/p&gt;
 
 &lt;p&gt;Про то как устанавливать Freeswitch и Netup UTM5 описано в документации. Скажу только, что Freeswitch установил из пакетов, а  модуль mod_xml_radius скомпилировал из исходников.&lt;/p&gt;
@@ -171,10 +171,10 @@ Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:core:main: failed to fix config
     
     <item>
       <title>Wifi Hotspot на основе Netup UTM5 &#43; Mikrotik</title>
-      <link>http://sclif.pro/post/2013-10-06-wifi-hotspot-%D0%BD%D0%B0-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B5-netup-utm5-mikrotik/</link>
+      <link>//sclif.pro/post/2013-10-06-wifi-hotspot-%D0%BD%D0%B0-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B5-netup-utm5-mikrotik/</link>
       <pubDate>Sun, 06 Oct 2013 17:13:22 +0000</pubDate>
       
-      <guid>http://sclif.pro/post/2013-10-06-wifi-hotspot-%D0%BD%D0%B0-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B5-netup-utm5-mikrotik/</guid>
+      <guid>//sclif.pro/post/2013-10-06-wifi-hotspot-%D0%BD%D0%B0-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B5-netup-utm5-mikrotik/</guid>
       <description>&lt;p&gt;Хочу поделиться своим опытов внедрения платного Wifi hotspot на основе биллинга Netup UTM5 и Mikrotik Hotspot. Не собираюсь открывать Америку, опишу сам концепт, а остальное додумаете или найдете на &lt;a title=&#34;Форум Netup&#34; href=&#34;http://www.netup.ru/phpbb/index.php&#34; target=&#34;_blank&#34;&gt;форуме&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Берем отдельный биллинг и создаем в нем тариф или несколько тарифов с услугой Dialup. Я создал тариф 50 рублей за час с равномерным списанием в течении суток, т. е. расчетный период 1 день. Настроил mikrotik c hotspot и связал его с биллингом через Radius.&lt;/p&gt;

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Freeswitch on ИТ заметки</title>
-    <link>http://sclif.pro/tags/freeswitch/index.xml</link>
+    <link>//sclif.pro/tags/freeswitch/index.xml</link>
     <description>Recent content in Freeswitch on ИТ заметки</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-ru</language>
-    <atom:link href="http://sclif.pro/tags/freeswitch/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//sclif.pro/tags/freeswitch/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Freeswitch &#43; mod_xml_radius &#43; Netup UTM5</title>
-      <link>http://sclif.pro/post/2014-06-28-freeswitch-mod_xml_radius-netup-utm5/</link>
+      <link>//sclif.pro/post/2014-06-28-freeswitch-mod_xml_radius-netup-utm5/</link>
       <pubDate>Sat, 28 Jun 2014 16:47:56 +0000</pubDate>
       
-      <guid>http://sclif.pro/post/2014-06-28-freeswitch-mod_xml_radius-netup-utm5/</guid>
+      <guid>//sclif.pro/post/2014-06-28-freeswitch-mod_xml_radius-netup-utm5/</guid>
       <description>&lt;p&gt;Обратились ко мне с просьбой настроить связку Freeswitch + mod_xml_radius + Netup UTM5. Ну собственно сам процесс.&lt;/p&gt;
 
 &lt;p&gt;Про то как устанавливать Freeswitch и Netup UTM5 описано в документации. Скажу только, что Freeswitch установил из пакетов, а  модуль mod_xml_radius скомпилировал из исходников.&lt;/p&gt;

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Y on ИТ заметки</title>
-    <link>http://sclif.pro/categories/y/index.xml</link>
+    <link>//sclif.pro/categories/y/index.xml</link>
     <description>Recent content in Y on ИТ заметки</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-ru</language>
-    <atom:link href="http://sclif.pro/categories/y/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//sclif.pro/categories/y/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Проекты</title>
-      <link>http://sclif.pro/projects/</link>
+      <link>//sclif.pro/projects/</link>
       <pubDate>Sat, 08 Jul 2017 12:38:48 +0500</pubDate>
       
-      <guid>http://sclif.pro/projects/</guid>
+      <guid>//sclif.pro/projects/</guid>
       <description>&lt;p&gt;Некоторые из проектов, в которых я принимал участие.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Система экзаменации&lt;/strong&gt;&lt;/br&gt;
@@ -36,10 +36,10 @@
     
     <item>
       <title>О себе...</title>
-      <link>http://sclif.pro/about/</link>
+      <link>//sclif.pro/about/</link>
       <pubDate>Sat, 25 Feb 2017 00:06:48 +0500</pubDate>
       
-      <guid>http://sclif.pro/about/</guid>
+      <guid>//sclif.pro/about/</guid>
       <description>&lt;p&gt;Меня зовут Александр. Я работаю в сфере ИТ более 20 лет .&lt;/p&gt;
 
 &lt;p&gt;В данный момент я занимаюсь:&lt;/p&gt;
