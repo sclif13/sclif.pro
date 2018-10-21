@@ -3,6 +3,9 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
 {{ range .Site.Params.customJS }}
 <script src="{{ $.Site.BaseURL }}{{ . }}"></script>
 {{ end }}
