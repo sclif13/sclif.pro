@@ -22,6 +22,7 @@ Docker Hub: https://hub.docker.com/r/sclif13/
   * email: sclif13[собака]ya.ru
   * skype: sclif13
   * telegram: [@sclif13][1]
+  * instagram: [sclif13][2]
 
- [1]: https://t.me/sclif13
-
+ [1]: https://tglink.ru/sclif13
+ [2]: https://www.instagram.com/sclif13/
