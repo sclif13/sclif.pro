@@ -16,11 +16,14 @@
       <guid>//sclif.pro/post/2012-07-14-%D0%BA%D0%BE%D1%81%D1%82%D1%8B%D0%BB%D1%8C-%E2%84%962-google-docs-%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D1%81%D0%BE%D1%80%D1%82%D0%B8%D1%80%D0%BE%D0%B2/</guid>
       <description>&lt;p&gt;Появилась задача в Google Docs автоматически сортировать определенный столбец в таблице по возрастанию, потратив 3 часа времени и перебрав пару решений из коллекции скриптов получил вот такое вот решение. Создал скрипт-триггер который срабатывает при редактировании таблицы.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;function myFunction() {
+&lt;pre&gt;&lt;code&gt;function onEdit() {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var range = ss.getSheets()[0].getRange(&amp;quot;A2:E255&amp;quot;); // A2:E255 диапазон сортировки
     range.sort({column: 5, ascending: false}); // сортировать 5 колонку по убыванию
+}
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://docs.google.com/spreadsheets/d/1n7ZOE6ZKGlybkt7TOnv_PONas5Gsu313cxVVRhKPJ7g/edit?usp=sharing&#34; target=&#34;_blank&#34;&gt;Пример&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
