@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>//sclif.pro/post/2019-06-15-web-audio-player/</loc>
+    <lastmod>2019-06-15T12:33:54+05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//sclif.pro/projects/</loc>
     <lastmod>2017-07-08T12:38:48+05:00</lastmod>
   </url>
@@ -84,7 +89,13 @@
   
   <url>
     <loc>//sclif.pro/tags/asterisk/</loc>
-    <lastmod>2015-09-13T08:41:19+00:00</lastmod>
+    <lastmod>2019-06-15T12:33:54+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//sclif.pro/tags/audio/</loc>
+    <lastmod>2019-06-15T12:33:54+05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -131,7 +142,7 @@
   
   <url>
     <loc>//sclif.pro/tags/freeswitch/</loc>
-    <lastmod>2014-06-28T16:47:56+00:00</lastmod>
+    <lastmod>2019-06-15T12:33:54+05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -161,7 +172,7 @@
   
   <url>
     <loc>//sclif.pro/post/</loc>
-    <lastmod>2015-09-13T08:41:19+00:00</lastmod>
+    <lastmod>2019-06-15T12:33:54+05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -180,6 +191,18 @@
   <url>
     <loc>//sclif.pro/tags/radius/</loc>
     <lastmod>2014-12-22T20:57:23+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//sclif.pro/tags/react/</loc>
+    <lastmod>2019-06-15T12:33:54+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//sclif.pro/categories/react/</loc>
+    <lastmod>2019-06-15T12:33:54+05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -205,7 +228,13 @@
   
   <url>
     <loc>//sclif.pro/tags/voip/</loc>
-    <lastmod>2015-09-13T08:41:19+00:00</lastmod>
+    <lastmod>2019-06-15T12:33:54+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//sclif.pro/tags/web/</loc>
+    <lastmod>2019-06-15T12:33:54+05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -235,7 +264,7 @@
   
   <url>
     <loc>//sclif.pro/</loc>
-    <lastmod>2017-07-08T12:38:48+05:00</lastmod>
+    <lastmod>2019-06-15T12:33:54+05:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -9,6 +9,17 @@
     <atom:link href="//sclif.pro/tags/freeswitch/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Web Audio Player</title>
+      <link>//sclif.pro/post/2019-06-15-web-audio-player/</link>
+      <pubDate>Sat, 15 Jun 2019 12:33:54 +0500</pubDate>
+      
+      <guid>//sclif.pro/post/2019-06-15-web-audio-player/</guid>
+      <description>&lt;p&gt;&lt;p&gt;Web audio плеер (React) из проекта просмотра CDR записей. Может проигрывать определенные выделенные участки, а также пропускать участки, где уровень звука меньше необходимого порога. Порог регулируется рычажком справа.&lt;/p&gt;
+&lt;img src=&#34;//sclif.pro/images/2019/webAudio.gif&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Freeswitch &#43; mod_xml_radius &#43; Netup UTM5</title>
       <link>//sclif.pro/post/2014-06-28-freeswitch-mod_xml_radius-netup-utm5/</link>
       <pubDate>Sat, 28 Jun 2014 16:47:56 +0000</pubDate>
