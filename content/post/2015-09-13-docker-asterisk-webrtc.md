@@ -53,4 +53,4 @@ docker exec  -it asterisk asterisk -rvvvvvvvvvvvvvvvvvvc
 
 P.S. Обновил asterisk до 13.14.0
 
-<a class="github-button" href="https://github.com/sclif13/docker-asterisk13-webrtc" data-size="large" aria-label="Star sclif13/docker-asterisk13-webrtc on GitHub">Star</a>
+{{< github-button >}}

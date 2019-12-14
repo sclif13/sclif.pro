@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Freeswitch on ИТ заметки</title>
-    <link>//sclif.pro/tags/freeswitch/index.xml</link>
-    <description>Recent content in Freeswitch on ИТ заметки</description>
+    <title>freeswitch on ИТ заметки</title>
+    <link>//sclif.pro/tags/freeswitch/</link>
+    <description>Recent content in freeswitch on ИТ заметки</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-ru</language>
-    <atom:link href="//sclif.pro/tags/freeswitch/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Jun 2019 12:33:54 +0500</lastBuildDate>
+    
+	<atom:link href="//sclif.pro/tags/freeswitch/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Web Audio Player</title>
@@ -14,9 +17,7 @@
       <pubDate>Sat, 15 Jun 2019 12:33:54 +0500</pubDate>
       
       <guid>//sclif.pro/post/2019-06-15-web-audio-player/</guid>
-      <description>&lt;p&gt;&lt;p&gt;Web audio плеер (React) из проекта просмотра CDR записей. Может проигрывать определенные выделенные участки, а также пропускать участки, где уровень звука меньше необходимого порога. Порог регулируется рычажком справа.&lt;/p&gt;
-&lt;img src=&#34;//sclif.pro/images/2019/webAudio.gif&#34; /&gt;&lt;/p&gt;
-</description>
+      <description>Web audio плеер (React) из проекта просмотра CDR записей. Может проигрывать определенные выделенные участки, а также пропускать участки, где уровень звука меньше необходимого порога. Порог регулируется рычажком справа.   </description>
     </item>
     
     <item>
@@ -25,25 +26,10 @@
       <pubDate>Sat, 28 Jun 2014 16:47:56 +0000</pubDate>
       
       <guid>//sclif.pro/post/2014-06-28-freeswitch-mod_xml_radius-netup-utm5/</guid>
-      <description>&lt;p&gt;Обратились ко мне с просьбой настроить связку Freeswitch + mod_xml_radius + Netup UTM5. Ну собственно сам процесс.&lt;/p&gt;
-
-&lt;p&gt;Про то как устанавливать Freeswitch и Netup UTM5 описано в документации. Скажу только, что Freeswitch установил из пакетов, а  модуль mod_xml_radius скомпилировал из исходников.&lt;/p&gt;
-
-&lt;p&gt;Теперь настраиваем mod_xml_radius.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Копируем xml_radius.conf.xml из исходников в папку /etc/freeswitch/autoload_configs/ и добавляем в файле modules.conf.xml наш модуль mod_xml_radius.&lt;/li&gt;
-&lt;li&gt;В файле xml_radius.conf.xml прописываем сервер и ключ доступа NAS.&lt;/li&gt;
-&lt;li&gt;Заменяем словари радиуса идущие в комплекте с модулем на словари идущие с  пакетом &lt;strong&gt;radiusclient-ng&lt;/strong&gt; и прописываем пути.&lt;/li&gt;
-&lt;li&gt;В файле &lt;strong&gt;dictionary.sip&lt;/strong&gt; имя атрибута&lt;strong&gt; Digest-User-Name&lt;/strong&gt; меняем на &lt;strong&gt;Digest-Username&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;Для accounting пакетов я добавляем параметр&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;param name=&amp;quot;Acct-Session-Id&amp;quot; variable=&amp;quot;uuid&amp;quot; format=&amp;quot;%s&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Все. Создаем услугу и телефон и проверяем. Если что-то не так, смотрим логи.&lt;/p&gt;
-</description>
+      <description>Обратились ко мне с просьбой настроить связку Freeswitch + mod_xml_radius + Netup UTM5. Ну собственно сам процесс.
+Про то как устанавливать Freeswitch и Netup UTM5 описано в документации. Скажу только, что Freeswitch установил из пакетов, а модуль mod_xml_radius скомпилировал из исходников.
+Теперь настраиваем mod_xml_radius.
+ Копируем xml_radius.conf.xml из исходников в папку /etc/freeswitch/autoload_configs/ и добавляем в файле modules.conf.xml наш модуль mod_xml_radius. В файле xml_radius.conf.xml прописываем сервер и ключ доступа NAS. Заменяем словари радиуса идущие в комплекте с модулем на словари идущие с пакетом radiusclient-ng и прописываем пути.</description>
     </item>
     
   </channel>

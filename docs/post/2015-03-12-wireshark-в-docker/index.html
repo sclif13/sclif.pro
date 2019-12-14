@@ -7,11 +7,13 @@
 		<meta name="author" content="Sclf.pro">
 		<meta name="description" content="ИТ заметки">
 		<meta name="keywords" content="">
-		<meta name="generator" content="Hugo 0.18.1" />
+		<meta name="generator" content="Hugo 0.61.0" />
 		<title>Wireshark в docker &middot; ИТ заметки</title>
 		<link rel="shortcut icon" href="//sclif.pro/images/favicon.ico">
 		<link rel="stylesheet" href="//sclif.pro/css/style.min.css">
 		<link rel="stylesheet" href="//sclif.pro/css/atom-one-light.min.css" media="all">
+		
+		<link rel="stylesheet" href="//sclif.pro//css/img.css">
 		
 
 		
@@ -77,9 +79,7 @@
                 </header>
                 <section id="post-body">
                     <p>Не давно столкнулся с проблемой установки wireshark 1.12 из исходников на ubuntu desktop 14.04, а точнее был конфликт между библиотеками Xserver. Так как я по большой части использую wireshark для наглядного разбора, а статистику собираю через tcpdump, то решил создать wireshark в docker.</p>
-
 <p>Dockerfile <a href="https://github.com/sclif13/docker-wireshark">https://github.com/sclif13/docker-wireshark</a></p>
-
 <p>Статья в помощь по запуску <a href="http://habrahabr.ru/post/240509/">http://habrahabr.ru/post/240509/</a></p>
 
                 </section>
@@ -136,14 +136,17 @@
 
 
   
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-30560332-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-30560332-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 
 

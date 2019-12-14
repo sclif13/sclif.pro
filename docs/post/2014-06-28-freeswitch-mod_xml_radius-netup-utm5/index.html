@@ -7,11 +7,13 @@
 		<meta name="author" content="Sclf.pro">
 		<meta name="description" content="ИТ заметки">
 		<meta name="keywords" content="">
-		<meta name="generator" content="Hugo 0.18.1" />
+		<meta name="generator" content="Hugo 0.61.0" />
 		<title>Freeswitch &#43; mod_xml_radius &#43; Netup UTM5 &middot; ИТ заметки</title>
 		<link rel="shortcut icon" href="//sclif.pro/images/favicon.ico">
 		<link rel="stylesheet" href="//sclif.pro/css/style.min.css">
 		<link rel="stylesheet" href="//sclif.pro/css/atom-one-light.min.css" media="all">
+		
+		<link rel="stylesheet" href="//sclif.pro//css/img.css">
 		
 
 		
@@ -79,23 +81,17 @@
                 </header>
                 <section id="post-body">
                     <p>Обратились ко мне с просьбой настроить связку Freeswitch + mod_xml_radius + Netup UTM5. Ну собственно сам процесс.</p>
-
 <p>Про то как устанавливать Freeswitch и Netup UTM5 описано в документации. Скажу только, что Freeswitch установил из пакетов, а  модуль mod_xml_radius скомпилировал из исходников.</p>
-
 <p>Теперь настраиваем mod_xml_radius.</p>
-
 <ul>
 <li>Копируем xml_radius.conf.xml из исходников в папку /etc/freeswitch/autoload_configs/ и добавляем в файле modules.conf.xml наш модуль mod_xml_radius.</li>
 <li>В файле xml_radius.conf.xml прописываем сервер и ключ доступа NAS.</li>
 <li>Заменяем словари радиуса идущие в комплекте с модулем на словари идущие с  пакетом <strong>radiusclient-ng</strong> и прописываем пути.</li>
-<li>В файле <strong>dictionary.sip</strong> имя атрибута<strong> Digest-User-Name</strong> меняем на <strong>Digest-Username</strong>.</li>
+<li>В файле <strong>dictionary.sip</strong> имя атрибута** Digest-User-Name** меняем на **Digest-Username**.</li>
 <li>Для accounting пакетов я добавляем параметр</li>
 </ul>
-
 <pre><code>param name=&quot;Acct-Session-Id&quot; variable=&quot;uuid&quot; format=&quot;%s&quot;
-</code></pre>
-
-<p>Все. Создаем услугу и телефон и проверяем. Если что-то не так, смотрим логи.</p>
+</code></pre><p>Все. Создаем услугу и телефон и проверяем. Если что-то не так, смотрим логи.</p>
 
                 </section>
             </article>
@@ -151,14 +147,17 @@
 
 
   
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-30560332-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-30560332-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 
 

@@ -17,4 +17,4 @@ function onEdit() {
 }
 ```
 
-<a href="https://docs.google.com/spreadsheets/d/1n7ZOE6ZKGlybkt7TOnv_PONas5Gsu313cxVVRhKPJ7g/edit?usp=sharing" target="_blank">Пример</a>
+{{< sample-onedit-link >}}

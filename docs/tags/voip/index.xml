@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Voip on ИТ заметки</title>
-    <link>//sclif.pro/tags/voip/index.xml</link>
-    <description>Recent content in Voip on ИТ заметки</description>
+    <title>voip on ИТ заметки</title>
+    <link>//sclif.pro/tags/voip/</link>
+    <description>Recent content in voip on ИТ заметки</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-ru</language>
-    <atom:link href="//sclif.pro/tags/voip/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Jun 2019 12:33:54 +0500</lastBuildDate>
+    
+	<atom:link href="//sclif.pro/tags/voip/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Web Audio Player</title>
@@ -14,9 +17,7 @@
       <pubDate>Sat, 15 Jun 2019 12:33:54 +0500</pubDate>
       
       <guid>//sclif.pro/post/2019-06-15-web-audio-player/</guid>
-      <description>&lt;p&gt;&lt;p&gt;Web audio плеер (React) из проекта просмотра CDR записей. Может проигрывать определенные выделенные участки, а также пропускать участки, где уровень звука меньше необходимого порога. Порог регулируется рычажком справа.&lt;/p&gt;
-&lt;img src=&#34;//sclif.pro/images/2019/webAudio.gif&#34; /&gt;&lt;/p&gt;
-</description>
+      <description>Web audio плеер (React) из проекта просмотра CDR записей. Может проигрывать определенные выделенные участки, а также пропускать участки, где уровень звука меньше необходимого порога. Порог регулируется рычажком справа.   </description>
     </item>
     
     <item>
@@ -25,43 +26,11 @@
       <pubDate>Sun, 13 Sep 2015 08:41:19 +0000</pubDate>
       
       <guid>//sclif.pro/post/2015-09-13-docker-asterisk-webrtc/</guid>
-      <description>&lt;p&gt;После нескольких часов экспериментов я создал docker &lt;a href=&#34;https://github.com/sclif13/docker-asterisk13-webrtc&#34;&gt;image&lt;/a&gt; на основе Centos 6 и Asterisk 13.5.0. Вышел он довольно увесистый в 1.3 Гб. Собран с поддержкой WebRTC.&lt;/p&gt;
-
-&lt;p&gt;Как пользоваться?&lt;/p&gt;
-
-&lt;p&gt;Качаем готовый image c &lt;a href=&#34;https://hub.docker.com/r/sclif13/docker-asterisk13-webrtc/&#34; target=&#34;_blank&#34;&gt;hub.docker.com&lt;/a&gt; :&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker pull sclif13/docker-asterisk13-webrtc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Затем необходимо создать docker контейнер:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker run -d -t --name=asterisk -p 5060:5060/udp \
-       -p 10000-10200:10000-10200/udp \
-       -p 8088:8088 \
-       -v /data/asterisk/etc:/etc/asterisk \
-       sclif13/docker-asterisk13-webrtc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Указываем порты 5060 для SIP, 10000-10200 для RTP, 8088  для webrtc. Так же если необходимо вынести конфиги наружу указываем папку где они будут лежать в вашей системе(/data/asterisk/etc) и в самом docker контейнере (/etc/asterisk)&lt;/p&gt;
-
-&lt;p&gt;После того как будет создан и запущен ваш docker контейнер нужно его сконфигурировать и для начала скопировать стандартные конфиги.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker exec  -it asterisk bash
-cd /usr/src/asterisk-*
-make samples
-exit
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Теперь в вашей папке(/data/asterisk/etc) должны появиться конфиги. Далее гуглим как настроить этот самый WebRTC для Asterisk. Чтобы попасть в консоль самого Asterisk выполняем следующую команду:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker exec  -it asterisk asterisk -rvvvvvvvvvvvvvvvvvvc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;P.S. Обновил asterisk до 13.14.0&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&#34;github-button&#34; href=&#34;https://github.com/sclif13/docker-asterisk13-webrtc&#34; data-size=&#34;large&#34; aria-label=&#34;Star sclif13/docker-asterisk13-webrtc on GitHub&#34;&gt;Star&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>После нескольких часов экспериментов я создал docker imageна основе Centos 6 и Asterisk 13.5.0. Вышел он довольно увесистый в 1.3 Гб. Собран с поддержкой WebRTC.
+Как пользоваться?
+Качаем готовый image c hub.docker.com:
+docker pull sclif13/docker-asterisk13-webrtc Затем необходимо создать docker контейнер:
+docker run -d -t --name=asterisk -p 5060:5060/udp \ -p 10000-10200:10000-10200/udp \ -p 8088:8088 \ -v /data/asterisk/etc:/etc/asterisk \ sclif13/docker-asterisk13-webrtc Указываем порты 5060 для SIP, 10000-10200 для RTP, 8088 для webrtc. Так же если необходимо вынести конфиги наружу указываем папку где они будут лежать в вашей системе(/data/asterisk/etc) и в самом docker контейнере (/etc/asterisk)</description>
     </item>
     
     <item>
@@ -70,132 +39,8 @@ exit
       <pubDate>Mon, 22 Dec 2014 20:57:23 +0000</pubDate>
       
       <guid>//sclif.pro/post/2014-12-23-opensips-netup-utm5/</guid>
-      <description>&lt;p&gt;В преддверии нового 2015 года решил поделиться своим опытом и опытом моего коллеги Евгения.&lt;/p&gt;
-
-&lt;p&gt;Уже давно у меня были попытки связать Kamailio/Opensips с различными биллингами с помощью протокола Radius. Стандартные модули позволяют это сделать, но не могут прочитать ответ от radius сервера, потому как требуют ответ в формате SIP-AVP. И вот начиная с версии 1.6 в opensips появился модуль
-&lt;a href=&#34;http://opensips.org/html/docs/modules/1.11.x/aaa_radius.html&#34; target=&#34;_blank&#34;&gt;aaa_radius&lt;/a&gt;. Сложность использования данного модуля в том, что нам необходимо самим настроить radius пакет Access-Request.&lt;/p&gt;
-
-&lt;p&gt;И так приступим собственно к настройке. Я установил последнюю версию opensips 1.11.3 из репозитория и radiusclient-ng. Необходимые переменные почерпнул в &lt;a href=&#34;http://www.opensips.org/Documentation/Script-CoreVar&#34; target=&#34;_blank&#34;&gt;документации&lt;/a&gt; opensips.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#### Radius
-loadmodule &amp;quot;auth.so&amp;quot;
-modparam(&amp;quot;auth&amp;quot;, &amp;quot;disable_nonce_check&amp;quot;, 1)
-
-loadmodule &amp;quot;aaa_radius.so&amp;quot;
-
-modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;radius_config&amp;quot;, &amp;quot;/etc/radiusclient-ng/radiusclient.conf&amp;quot;)
-modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;fetch_all_values&amp;quot;, 1)
-modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;sets&amp;quot;,&amp;quot;auth_register = (User-Name = $fU,
-                                               Digest-Response = $auth.resp,
-                                               Digest-Realm = $ar,
-                                               Digest-Nonce = $an,
-                                               Digest-User-Name = $au,
-                                               Digest-Uri = $adu,
-                                               Digest-Method  = $avp(method),
-                                               Digest-Qop = $auth.qop,
-                                               Digest-CNonce = $auth.cnonce,
-                                               Digest-Nonce-Count = $auth.nc)&amp;quot;)
-
-
-modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;sets&amp;quot;,&amp;quot;radius-reply = (h323-credit-amount = $avp(amount),
-                                              h323-credit-time = $avp(credit-time),
-                                              h323-currency = $avp(currency),
-                                              h323-return-code = $avp(return-code))&amp;quot;)
-
-modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;sets&amp;quot;,&amp;quot;auth_invite = (User-Name = $fU,
-                                             h323-conf-id=$ci,
-                                             Called-Station-Id = $rU,
-                                             Calling-Station-Id = $fU,
-                                             Digest-Response = $auth.resp,
-                                             Digest-Realm = $ar,
-                                             Digest-Nonce = $an,
-                                             Digest-User-Name = $au,
-                                             Digest-Uri = $adu,
-                                             Digest-Method  = $avp(method),
-                                             Digest-Qop = $auth.qop,
-                                             Digest-CNonce = $auth.cnonce,
-                                             Digest-Nonce-Count = $auth.nc)&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Для Digest-Method не нашлась переменная, поэтому будем указывать её явно. Для метода REGISTER используем настройки auth_register и radius-reply&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;if (is_method(&amp;quot;REGISTER&amp;quot;))
-    {
-        if($adu != NULL) {
-            $avp(method) = &amp;quot;REGISTER&amp;quot;;
-            radius_send_auth(&amp;quot;auth_register&amp;quot;,&amp;quot;radius-reply&amp;quot;);
-            switch ($rc) {
-                case 1:
-                    xlog(&amp;quot;authentication ok \n&amp;quot;);
-                    xlog(&amp;quot;$avp(credit-time)&amp;quot;);
-                    xlog(&amp;quot;$avp(return-code)&amp;quot;);
-                    xlog(&amp;quot;$var(amount)&amp;quot;);
-                    break;
-                case -1:
-                    xlog(&amp;quot;error during authentication\n&amp;quot;);
-                    sl_send_reply(&amp;quot;503&amp;quot;, &amp;quot;Service Unavailable&amp;quot;);
-                    break;
-                case -2:
-                    xlog(&amp;quot;authentication denied \n&amp;quot;);
-                    sl_send_reply(&amp;quot;401&amp;quot;, &amp;quot;Unauthorized&amp;quot;);
-                    break;
-            }
-        } else {
-            www_challenge(&amp;quot;&amp;quot;, &amp;quot;1&amp;quot;);
-            exit;
-            };
-
-        if (   0 ) setflag(TCP_PERSISTENT);
-        if (!save(&amp;quot;location&amp;quot;))
-            sl_reply_error();
-
-        exit;
-    }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Для метода INVITE используем настройки auth_invite и radius-reply&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;route[relay] {
-
-    if (is_method(&amp;quot;INVITE&amp;quot;) &amp;amp;&amp;amp; !has_totag()) {
-        if($adu != NULL) {
-            $avp(method) = &amp;quot;INVITE&amp;quot;;
-            radius_send_auth(&amp;quot;auth_invite&amp;quot;,&amp;quot;radius-reply&amp;quot;);
-            switch ($rc) {
-                case 1:
-                    xlog(&amp;quot;authentication ok \n&amp;quot;);
-                    xlog(&amp;quot;$avp(credit-time)&amp;quot;);
-                    xlog(&amp;quot;$avp(return-code)&amp;quot;);
-                    xlog(&amp;quot;$avp(amount)&amp;quot;);
-                    break;
-                case -1:
-                    xlog(&amp;quot;error during authentication\n&amp;quot;);
-                    sl_send_reply(&amp;quot;503&amp;quot;, &amp;quot;Service Unavailable&amp;quot;);
-                    break;
-                case -2:
-                    xlog(&amp;quot;authentication denied \n&amp;quot;);
-                    sl_send_reply(&amp;quot;401&amp;quot;, &amp;quot;Unauthorized&amp;quot;);
-                    break;
-            }
-        } else {
-            proxy_challenge(&amp;quot;&amp;quot;, &amp;quot;1&amp;quot;);
-            exit;
-            };
-
-
-    }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;При настройке возникли трудности с словарями radiusclient-ng, которые могут возникнуть у вас.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:aaa_radius:init_radius_handle: attribute not found Cisco:h323-return-code
-Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:aaa_radius:send_auth_fixup: invalid radius handle
-Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:core:fix_actions: fixing failed (code=-1) at cfg line 297
-Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:core:main: failed to fix configuration with err code -1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;По ссылке &lt;a href=&#34;https://github.com/sclif13/opensips-utm5&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;https://github.com/sclif13/opensips-utm5&#34;&gt;https://github.com/sclif13/opensips-utm5&lt;/a&gt;&lt;/a&gt; вы найдете полный пример.&lt;/p&gt;
-</description>
+      <description>В преддверии нового 2015 года решил поделиться своим опытом и опытом моего коллеги Евгения.
+Уже давно у меня были попытки связать Kamailio/Opensips с различными биллингами с помощью протокола Radius. Стандартные модули позволяют это сделать, но не могут прочитать ответ от radius сервера, потому как требуют ответ в формате SIP-AVP. И вот начиная с версии 1.6 в opensips появился модуль aaa_radius. Сложность использования данного модуля в том, что нам необходимо самим настроить radius пакет Access-Request.</description>
     </item>
     
     <item>
@@ -204,25 +49,10 @@ Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:core:main: failed to fix config
       <pubDate>Sat, 28 Jun 2014 16:47:56 +0000</pubDate>
       
       <guid>//sclif.pro/post/2014-06-28-freeswitch-mod_xml_radius-netup-utm5/</guid>
-      <description>&lt;p&gt;Обратились ко мне с просьбой настроить связку Freeswitch + mod_xml_radius + Netup UTM5. Ну собственно сам процесс.&lt;/p&gt;
-
-&lt;p&gt;Про то как устанавливать Freeswitch и Netup UTM5 описано в документации. Скажу только, что Freeswitch установил из пакетов, а  модуль mod_xml_radius скомпилировал из исходников.&lt;/p&gt;
-
-&lt;p&gt;Теперь настраиваем mod_xml_radius.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Копируем xml_radius.conf.xml из исходников в папку /etc/freeswitch/autoload_configs/ и добавляем в файле modules.conf.xml наш модуль mod_xml_radius.&lt;/li&gt;
-&lt;li&gt;В файле xml_radius.conf.xml прописываем сервер и ключ доступа NAS.&lt;/li&gt;
-&lt;li&gt;Заменяем словари радиуса идущие в комплекте с модулем на словари идущие с  пакетом &lt;strong&gt;radiusclient-ng&lt;/strong&gt; и прописываем пути.&lt;/li&gt;
-&lt;li&gt;В файле &lt;strong&gt;dictionary.sip&lt;/strong&gt; имя атрибута&lt;strong&gt; Digest-User-Name&lt;/strong&gt; меняем на &lt;strong&gt;Digest-Username&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;Для accounting пакетов я добавляем параметр&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;param name=&amp;quot;Acct-Session-Id&amp;quot; variable=&amp;quot;uuid&amp;quot; format=&amp;quot;%s&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Все. Создаем услугу и телефон и проверяем. Если что-то не так, смотрим логи.&lt;/p&gt;
-</description>
+      <description>Обратились ко мне с просьбой настроить связку Freeswitch + mod_xml_radius + Netup UTM5. Ну собственно сам процесс.
+Про то как устанавливать Freeswitch и Netup UTM5 описано в документации. Скажу только, что Freeswitch установил из пакетов, а модуль mod_xml_radius скомпилировал из исходников.
+Теперь настраиваем mod_xml_radius.
+ Копируем xml_radius.conf.xml из исходников в папку /etc/freeswitch/autoload_configs/ и добавляем в файле modules.conf.xml наш модуль mod_xml_radius. В файле xml_radius.conf.xml прописываем сервер и ключ доступа NAS. Заменяем словари радиуса идущие в комплекте с модулем на словари идущие с пакетом radiusclient-ng и прописываем пути.</description>
     </item>
     
   </channel>

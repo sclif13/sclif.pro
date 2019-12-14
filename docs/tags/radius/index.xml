@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Radius on ИТ заметки</title>
-    <link>//sclif.pro/tags/radius/index.xml</link>
-    <description>Recent content in Radius on ИТ заметки</description>
+    <title>radius on ИТ заметки</title>
+    <link>//sclif.pro/tags/radius/</link>
+    <description>Recent content in radius on ИТ заметки</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-ru</language>
-    <atom:link href="//sclif.pro/tags/radius/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Dec 2014 20:57:23 +0000</lastBuildDate>
+    
+	<atom:link href="//sclif.pro/tags/radius/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Opensips &#43; Netup UTM5</title>
@@ -14,132 +17,8 @@
       <pubDate>Mon, 22 Dec 2014 20:57:23 +0000</pubDate>
       
       <guid>//sclif.pro/post/2014-12-23-opensips-netup-utm5/</guid>
-      <description>&lt;p&gt;В преддверии нового 2015 года решил поделиться своим опытом и опытом моего коллеги Евгения.&lt;/p&gt;
-
-&lt;p&gt;Уже давно у меня были попытки связать Kamailio/Opensips с различными биллингами с помощью протокола Radius. Стандартные модули позволяют это сделать, но не могут прочитать ответ от radius сервера, потому как требуют ответ в формате SIP-AVP. И вот начиная с версии 1.6 в opensips появился модуль
-&lt;a href=&#34;http://opensips.org/html/docs/modules/1.11.x/aaa_radius.html&#34; target=&#34;_blank&#34;&gt;aaa_radius&lt;/a&gt;. Сложность использования данного модуля в том, что нам необходимо самим настроить radius пакет Access-Request.&lt;/p&gt;
-
-&lt;p&gt;И так приступим собственно к настройке. Я установил последнюю версию opensips 1.11.3 из репозитория и radiusclient-ng. Необходимые переменные почерпнул в &lt;a href=&#34;http://www.opensips.org/Documentation/Script-CoreVar&#34; target=&#34;_blank&#34;&gt;документации&lt;/a&gt; opensips.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#### Radius
-loadmodule &amp;quot;auth.so&amp;quot;
-modparam(&amp;quot;auth&amp;quot;, &amp;quot;disable_nonce_check&amp;quot;, 1)
-
-loadmodule &amp;quot;aaa_radius.so&amp;quot;
-
-modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;radius_config&amp;quot;, &amp;quot;/etc/radiusclient-ng/radiusclient.conf&amp;quot;)
-modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;fetch_all_values&amp;quot;, 1)
-modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;sets&amp;quot;,&amp;quot;auth_register = (User-Name = $fU,
-                                               Digest-Response = $auth.resp,
-                                               Digest-Realm = $ar,
-                                               Digest-Nonce = $an,
-                                               Digest-User-Name = $au,
-                                               Digest-Uri = $adu,
-                                               Digest-Method  = $avp(method),
-                                               Digest-Qop = $auth.qop,
-                                               Digest-CNonce = $auth.cnonce,
-                                               Digest-Nonce-Count = $auth.nc)&amp;quot;)
-
-
-modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;sets&amp;quot;,&amp;quot;radius-reply = (h323-credit-amount = $avp(amount),
-                                              h323-credit-time = $avp(credit-time),
-                                              h323-currency = $avp(currency),
-                                              h323-return-code = $avp(return-code))&amp;quot;)
-
-modparam(&amp;quot;aaa_radius&amp;quot;,&amp;quot;sets&amp;quot;,&amp;quot;auth_invite = (User-Name = $fU,
-                                             h323-conf-id=$ci,
-                                             Called-Station-Id = $rU,
-                                             Calling-Station-Id = $fU,
-                                             Digest-Response = $auth.resp,
-                                             Digest-Realm = $ar,
-                                             Digest-Nonce = $an,
-                                             Digest-User-Name = $au,
-                                             Digest-Uri = $adu,
-                                             Digest-Method  = $avp(method),
-                                             Digest-Qop = $auth.qop,
-                                             Digest-CNonce = $auth.cnonce,
-                                             Digest-Nonce-Count = $auth.nc)&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Для Digest-Method не нашлась переменная, поэтому будем указывать её явно. Для метода REGISTER используем настройки auth_register и radius-reply&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;if (is_method(&amp;quot;REGISTER&amp;quot;))
-    {
-        if($adu != NULL) {
-            $avp(method) = &amp;quot;REGISTER&amp;quot;;
-            radius_send_auth(&amp;quot;auth_register&amp;quot;,&amp;quot;radius-reply&amp;quot;);
-            switch ($rc) {
-                case 1:
-                    xlog(&amp;quot;authentication ok \n&amp;quot;);
-                    xlog(&amp;quot;$avp(credit-time)&amp;quot;);
-                    xlog(&amp;quot;$avp(return-code)&amp;quot;);
-                    xlog(&amp;quot;$var(amount)&amp;quot;);
-                    break;
-                case -1:
-                    xlog(&amp;quot;error during authentication\n&amp;quot;);
-                    sl_send_reply(&amp;quot;503&amp;quot;, &amp;quot;Service Unavailable&amp;quot;);
-                    break;
-                case -2:
-                    xlog(&amp;quot;authentication denied \n&amp;quot;);
-                    sl_send_reply(&amp;quot;401&amp;quot;, &amp;quot;Unauthorized&amp;quot;);
-                    break;
-            }
-        } else {
-            www_challenge(&amp;quot;&amp;quot;, &amp;quot;1&amp;quot;);
-            exit;
-            };
-
-        if (   0 ) setflag(TCP_PERSISTENT);
-        if (!save(&amp;quot;location&amp;quot;))
-            sl_reply_error();
-
-        exit;
-    }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Для метода INVITE используем настройки auth_invite и radius-reply&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;route[relay] {
-
-    if (is_method(&amp;quot;INVITE&amp;quot;) &amp;amp;&amp;amp; !has_totag()) {
-        if($adu != NULL) {
-            $avp(method) = &amp;quot;INVITE&amp;quot;;
-            radius_send_auth(&amp;quot;auth_invite&amp;quot;,&amp;quot;radius-reply&amp;quot;);
-            switch ($rc) {
-                case 1:
-                    xlog(&amp;quot;authentication ok \n&amp;quot;);
-                    xlog(&amp;quot;$avp(credit-time)&amp;quot;);
-                    xlog(&amp;quot;$avp(return-code)&amp;quot;);
-                    xlog(&amp;quot;$avp(amount)&amp;quot;);
-                    break;
-                case -1:
-                    xlog(&amp;quot;error during authentication\n&amp;quot;);
-                    sl_send_reply(&amp;quot;503&amp;quot;, &amp;quot;Service Unavailable&amp;quot;);
-                    break;
-                case -2:
-                    xlog(&amp;quot;authentication denied \n&amp;quot;);
-                    sl_send_reply(&amp;quot;401&amp;quot;, &amp;quot;Unauthorized&amp;quot;);
-                    break;
-            }
-        } else {
-            proxy_challenge(&amp;quot;&amp;quot;, &amp;quot;1&amp;quot;);
-            exit;
-            };
-
-
-    }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;При настройке возникли трудности с словарями radiusclient-ng, которые могут возникнуть у вас.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:aaa_radius:init_radius_handle: attribute not found Cisco:h323-return-code
-Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:aaa_radius:send_auth_fixup: invalid radius handle
-Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:core:fix_actions: fixing failed (code=-1) at cfg line 297
-Dec 21 02:13:10 /usr/sbin/opensips[13231]: ERROR:core:main: failed to fix configuration with err code -1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;По ссылке &lt;a href=&#34;https://github.com/sclif13/opensips-utm5&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;https://github.com/sclif13/opensips-utm5&#34;&gt;https://github.com/sclif13/opensips-utm5&lt;/a&gt;&lt;/a&gt; вы найдете полный пример.&lt;/p&gt;
-</description>
+      <description>В преддверии нового 2015 года решил поделиться своим опытом и опытом моего коллеги Евгения.
+Уже давно у меня были попытки связать Kamailio/Opensips с различными биллингами с помощью протокола Radius. Стандартные модули позволяют это сделать, но не могут прочитать ответ от radius сервера, потому как требуют ответ в формате SIP-AVP. И вот начиная с версии 1.6 в opensips появился модуль aaa_radius. Сложность использования данного модуля в том, что нам необходимо самим настроить radius пакет Access-Request.</description>
     </item>
     
   </channel>

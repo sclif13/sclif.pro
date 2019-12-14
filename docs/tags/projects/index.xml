@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Projects on ИТ заметки</title>
-    <link>//sclif.pro/tags/projects/index.xml</link>
-    <description>Recent content in Projects on ИТ заметки</description>
+    <title>projects on ИТ заметки</title>
+    <link>//sclif.pro/tags/projects/</link>
+    <description>Recent content in projects on ИТ заметки</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-ru</language>
-    <atom:link href="//sclif.pro/tags/projects/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Jul 2017 12:38:48 +0500</lastBuildDate>
+    
+	<atom:link href="//sclif.pro/tags/projects/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Проекты</title>
@@ -14,24 +17,17 @@
       <pubDate>Sat, 08 Jul 2017 12:38:48 +0500</pubDate>
       
       <guid>//sclif.pro/projects/</guid>
-      <description>&lt;p&gt;Некоторые из проектов, в которых я принимал участие.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Автоматизированная система проведения экзаменов&lt;/strong&gt;&lt;/br&gt;
-Система создана для проведения дистанционных экзаменов на базе образовательных учреждений.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Система автоматического обзвона Peach Dialer v3&lt;/strong&gt; &lt;/br&gt;
-Система обзвона по базе клиентов в 2-х режимах: автоинформатор, разговор с менеджером.
-Так же в ПО есть: кабинет менеджера, алгоритм определения автоответчиков, интеграция с CRM.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Blank&lt;/strong&gt; &lt;a href=&#34;https://getblank.net&#34;&gt;https://getblank.net&lt;/a&gt; &lt;/br&gt;
-Открытая платформа для разработки приложений&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Bicallback&lt;/strong&gt; &lt;/br&gt;
-Сервис обратных звонков (Турция)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Callback Power&lt;/strong&gt; &lt;a href=&#34;https://cbp.kz&#34;&gt;https://cbp.kz&lt;/a&gt; &lt;/br&gt;
-Сервис обратных звонков (Казахстан)&lt;/p&gt;
-</description>
+      <description>Некоторые из проектов, в которых я принимал участие.
+Автоматизированная система проведения экзаменов
+Система создана для проведения дистанционных экзаменов на базе образовательных учреждений.
+Система автоматического обзвона Peach Dialer v3
+Система обзвона по базе клиентов в 2-х режимах: автоинформатор, разговор с менеджером. Так же в ПО есть: кабинет менеджера, алгоритм определения автоответчиков, интеграция с CRM.
+Blank https://getblank.net
+Открытая платформа для разработки приложений
+Bicallback
+Сервис обратных звонков (Турция)
+Callback Power https://cbp.kz
+Сервис обратных звонков (Казахстан)</description>
     </item>
     
   </channel>
