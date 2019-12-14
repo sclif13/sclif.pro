@@ -28,12 +28,12 @@
   </url>
   
   <url>
-    <loc>//sclif.pro/categories/react/</loc>
+    <loc>//sclif.pro/tags/react/</loc>
     <lastmod>2019-06-15T12:33:54+05:00</lastmod>
   </url>
   
   <url>
-    <loc>//sclif.pro/tags/react/</loc>
+    <loc>//sclif.pro/categories/react/</loc>
     <lastmod>2019-06-15T12:33:54+05:00</lastmod>
   </url>
   
@@ -240,10 +240,6 @@
   <url>
     <loc>//sclif.pro/post/2012-04-02-%D0%BA%D0%BE%D1%81%D1%82%D1%8B%D0%BB%D1%8C-1-%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4-dbf-%D0%B2-xls/</loc>
     <lastmod>2012-04-02T16:04:30+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//sclif.pro/tags/</loc>
   </url>
   
 </urlset>

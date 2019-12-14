@@ -194,14 +194,5 @@ use Net::SSH::Perl;my $host =&amp;quot;xx.xx.xx.xx&amp;quot;;my $user = &amp;q
 Данный макрос берет файлы dbf из папки C:\TEMP\detail\ и кладет XLS в C:\TEMP\detail\XLS\ .</description>
     </item>
     
-    <item>
-      <title>Tags</title>
-      <link>//sclif.pro/tags/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>//sclif.pro/tags/</guid>
-      <description>tags</description>
-    </item>
-    
   </channel>
 </rss>
