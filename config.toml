@@ -9,7 +9,7 @@ theme = "hugo-theme-cactus-plus"
 googleAnalytics = "UA-30560332-1"
 
 [params]
-	name = "Sclf.pro"
+	name = "Sclif.pro"
 	description = "ИТ заметки"
 	bio = "ИТ заметки"
 	# Enter optionally your twitter account
